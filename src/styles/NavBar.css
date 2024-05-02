@@ -64,6 +64,8 @@ body {
     width: 100%;
     
     flex-grow: 1;
+    padding-left: 10px; /* Add padding left of the text in the search bar. */
+    padding-right: 10px; /* Add padding right of the text in the search bar. */
     
 
 }
