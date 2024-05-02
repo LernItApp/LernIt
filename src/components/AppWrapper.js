@@ -1,5 +1,7 @@
 import React from 'react'
 import NavBar from './NavBar'
+import '../styles/AppWrapper.css'
+import '../styles/ScrollBar.css';
 
 function AppWrapper({ children }) {
   return (

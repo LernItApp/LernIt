@@ -1,0 +1,26 @@
+/* 
+
+    This is the code for the ScrollBar you see on LernIt.
+
+*/
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #424242; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #686868;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
