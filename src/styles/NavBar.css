@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background-color: #333;
+
+    
+    display: flex;
+    align-items: center;
+
+    z-index: 0;
+}
+  
+.title {
+    float: left;
+
+    font-size: 24px;
+}
+  
+.nav-item {
+    float: right;
+}
+
+#nav-item a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#nav-item a:hover {
+    background-color: #111;
+}
+
+.nav-search {
+    padding: 0px;
+    border: none;
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 17px;
+    border-radius: 10px;
+
+    flex: 1;
+    margin-right: 0px;
+}
+
+.make-sticky {
+    position: fixed;
+    width: 100%;
+}
