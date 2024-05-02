@@ -1,5 +1,8 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
+import Home from "./pages/Home";
+import New from "./pages/New";
 
 function App() {
   return (
@@ -18,6 +21,13 @@ function App() {
           Learn React
         </a>
       </header>
+      
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/new" element={<New />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
