@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react';
 import '../styles/NavBar.css';
 
 function NavBar() {
+
+    const [inputValue, setInputValue] = useState('');
+
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+    };
+
   return (
     <div className='make-sticky'>
         <ul className="navbar">
@@ -13,7 +20,8 @@ function NavBar() {
                 <input
                 className='searchBar'
                 type="text"
-                value={""}
+                value={inputValue}
+                onChange={handleInputChange}
                 />
             </li>
             <li className="nav-item" id="nav-item"><a href="/about">About</a></li>
