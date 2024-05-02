@@ -9,12 +9,13 @@ function NavBar() {
             <li className="nav-item" id="nav-item"><a href="/mysets">My Sets</a></li>
             <li className="nav-item" id="nav-item"><a href="/new">New</a></li>
 
-            {/* <li className="nav-item" id="nav-item">
+            <li className="nav-item search-item" id="nav-item">
                 <input
+                className='searchBar'
                 type="text"
                 value={""}
                 />
-            </li> */}
+            </li>
             <li className="nav-item" id="nav-item"><a href="/about">About</a></li>
             <li className="nav-item" id="nav-item"><a href="/me">Me</a></li>
         </ul>
