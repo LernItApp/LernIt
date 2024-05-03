@@ -11,8 +11,26 @@ import MySets from "./pages/MySets";
 import Me from "./pages/Me";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import React, { useState, useEffect } from "react";
+import Cookies from "universal-cookie";
+import { Auth } from "./components/Auth.js";
+
+const cookies = new Cookies();
 
 function App() {
+  const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
+
+  if (!isAuth) {
+    return (
+      <AppWrapper
+        isAuth={isAuth}
+        setIsAuth={setIsAuth}
+      >
+        <Auth setIsAuth={setIsAuth} />
+      </AppWrapper>
+    );
+  }
+
   return (
     <AppWrapper>
       <Router>
