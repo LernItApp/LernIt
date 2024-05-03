@@ -1,12 +1,6 @@
 # LernIt
 LernIt is a simple but effective learning solution for students! It emphaises efficiency and performance when it comes to learning new things, regardless of what you are learning!
 
-## How to Contribute
-Contributions to this project are welcome and encouraged! Please make an issue on GitHub so we can discuss your contribution before you make a pull request.
-
-# License
-This project is licensed under the [MIT License](LICENSE).
-
 ## Docker
 
 ### Running with Docker
@@ -41,3 +35,9 @@ To build and run the Docker container for this project, follow these steps:
     ```
 
     This command will start the container and map port 3000 from the container to port 3000 on your host machine, allowing you to access the application in your web browser at http://localhost:3000.
+
+## How to Contribute
+Contributions to this project are welcome and encouraged! Please make an issue on GitHub so we can discuss your contribution before you make a pull request.
+
+# License
+This project is licensed under the [MIT License](LICENSE).
