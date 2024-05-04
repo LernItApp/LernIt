@@ -14,6 +14,8 @@ import About from "./pages/About";
 import React, { useState, useEffect } from "react";
 import Cookies from "universal-cookie";
 import { Auth } from "./components/Auth.js";
+import FrontPage from "./pages/FrontPage.js";
+import SignIn from "./pages/SignIn.js";
 
 const cookies = new Cookies();
 
@@ -26,7 +28,17 @@ function App() {
         isAuth={isAuth}
         setIsAuth={setIsAuth}
       >
-        <Auth setIsAuth={setIsAuth} />
+
+
+      <Router>
+        <Routes>
+          <Route path="/" element={<FrontPage />} />
+          <Route path="/signin" element={<SignIn />} />
+        </Routes>
+      </Router>
+
+        {/* <Auth setIsAuth={setIsAuth} /> */}
+
       </AppWrapper>
     );
   }
