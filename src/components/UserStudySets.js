@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import '../styles/me.css';
-import { UserStudySets } from "../components/UserStudySets.js";
+import React from 'react'
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { db, auth } from "../firebase-config";
 import {
     collection,
@@ -15,33 +15,8 @@ import {
     getDoc
   } from "firebase/firestore";
 
-function Me() {
-  const [displayName, setDisplayName] = useState('Unknown User');
-  const [photoURL, setPhotoURL] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
-        const name = user.displayName;
-        const photoURL = user.photoURL; // Get the user's profile picture URL
-        if (name) {
-          setDisplayName(name);
-        }
-        if (photoURL) {
-          setPhotoURL(photoURL);
-          console.log("Photo URL:", photoURL);
-        }
-      } else {
-        setDisplayName('Unknown User');
-        setPhotoURL(null);
-      }
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
+export function UserStudySets() {
+    
   const [studyLists, setStudyLists] = useState(null);
 
   useEffect(() => {
@@ -89,24 +64,15 @@ function Me() {
 
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <div className='pageContainer'>
-      <div className='user-container'>
-        {photoURL && <img className='profileImage' src={photoURL} alt="Profile" />}
-        <h1 className='username'>{displayName}</h1>
-      </div>
-      <div className='user-sets-container-title'>
-        <h2 className='username-sets'>{displayName}'s study sets</h2>
-      </div>
-      <div className='user-sets-container'>
-      <UserStudySets/>
-      </div>
-    </div>
-  );
+      <ul>
+        { studyLists ? (
+          studyLists.map((guide) => (
+          
+          <li key={guide.id}> <a href={`/list/${guide.id}`}> {guide.title} : {guide.user} </a> </li> 
+          
+          ))
+        ) : ( <p>Loading...</p> )}
+      </ul>
+  )
 }
-
-export default Me;
