@@ -1,0 +1,48 @@
+.pageContainer {
+    padding-top: 60px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.user-container {
+    border-style: solid;
+    background-color: #e0e0e0;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+}
+
+.profileImage {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.username {
+    margin-left: 20px;
+    font-size: 35px;
+}
+
+.user-sets-container-title {
+    margin-top: 50px;
+}
+
+.username-sets {
+    text-align: left;
+    display: flex;
+    padding: 0px;
+    margin: 0;
+}
+
+
+.user-sets-container {
+    border-style: solid;
+    margin-top: 0px;
+    height: 100px;
+    border-style: solid;
+    background-color: #e0e0e0;
+    padding: 15px;
+    padding-top: 10px;
+    border-radius: 10px;
+}
