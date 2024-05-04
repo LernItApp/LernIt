@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 import Home from "./pages/Home";
@@ -34,6 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<FrontPage />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="*" element={<Navigate to="/SignIn" replace />} />
         </Routes>
       </Router>
 
@@ -56,6 +57,7 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/search" element={<Search />} />
           <Route path="/terms" element={<TermsOfService />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
     </AppWrapper>
