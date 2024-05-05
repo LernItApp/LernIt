@@ -22,42 +22,31 @@ const cookies = new Cookies();
 function App() {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
 
-  if (!isAuth) {
-    return (
-      <AppWrapper
-        isAuth={isAuth}
-        setIsAuth={setIsAuth}
-      >
-
-
-      <Router>
-        <Routes>
-          <Route path="/" element={<FrontPage />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="*" element={<Navigate to="/SignIn" replace />} />
-        </Routes>
-      </Router>
-
-      {/* <Auth setIsAuth={setIsAuth} /> */}
-
-      </AppWrapper>
-    );
-  }
-
   return (
-    <AppWrapper>
+    <AppWrapper isAuth={isAuth} setIsAuth={setIsAuth}>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/new" element={<New />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/me" element={<Me />} />
-          <Route path="/mysets" element={<MySets />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/terms" element={<TermsOfService />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          {!isAuth && (
+            <>
+              <Route path="/" element={<Home />} />
+              <Route path="/signin" element={<SignIn />} />
+              <Route path="*" element={<Navigate to="/SignIn" replace />} />
+            </>
+          )}
+          {isAuth && (
+            <>
+              <Route path="/" element={<Home />} />
+              <Route path="/new" element={<New />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/me" element={<Me />} />
+              <Route path="/mysets" element={<MySets />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/terms" element={<TermsOfService />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </>
+          )}
         </Routes>
       </Router>
     </AppWrapper>

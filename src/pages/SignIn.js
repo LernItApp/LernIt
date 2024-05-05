@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import '../styles/SignIn.css';
 import Cookies from "universal-cookie";
 import { Auth } from "../components/Auth.js";
+import { getAuth, createUserWithEmailAndPassword, updateProfile  } from "firebase/auth";
+const auth = getAuth();
 
 const cookies = new Cookies();
 
@@ -33,6 +35,57 @@ function SignIn() {
         console.log('Name:', name);
         console.log('Email:', email);
         console.log('Password:', password);
+
+        // i added this below
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed up 
+            const user = userCredential.user;
+            // Update user profile with full name
+            console.log("User signed up:", user);
+
+            updateProfile(auth.currentUser, {
+                displayName: name
+            }).then(() => {
+                console.log("User profile updated with full name:", name);
+                console.log("User signed up:", user);
+
+                cookies.set("auth-token", user.refreshToken);
+                setIsAuth(true);
+            });
+            
+            // userCredential.user.updateProfile({
+            //     displayName: name
+            // }).then(() => {
+            //     // Profile updated successfully
+            //     console.log("User profile updated with full name:", name);
+            //     console.log("User signed up:", user);
+
+            //     cookies.set("auth-token", user.refreshToken);
+            //     setIsAuth(true);
+
+            // }).catch((error) => {
+            //     // Handle errors updating profile
+            //     console.error("Error updating user profile:", error);
+            // });
+        
+
+            // user.getIdToken().then((refreshToken) => {
+            //     // Set the refresh token as a cookie
+            //     cookies.set("refresh-token", refreshToken, { path: "/" });
+            //     // Update authentication state
+            //     setIsAuth(true);
+            // }).catch((error) => {
+            //     // Handle error
+            //     console.error("Error getting user ID token:", error);
+            // });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+        });
+        console.log("bro wahfewrvfet")
     };
 
     const handleSwitchSignUp = () => {
