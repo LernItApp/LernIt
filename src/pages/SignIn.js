@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import '../styles/SignIn.css';
+import Cookies from "universal-cookie";
+import { Auth } from "../components/Auth.js";
+
+const cookies = new Cookies();
 
 function SignIn() {
+    const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -35,6 +42,10 @@ function SignIn() {
     const handleSwitchLogIn = () => {
         setIsLogin(true);
     };
+
+    if (isAuth) {
+        return <Navigate to="/" replace />; // Redirect if authenticated
+    }
 
   return (
     <div className='signinpage'>
@@ -73,6 +84,7 @@ function SignIn() {
                     required
                 />
                 <button className='submit-button' type="submit">{isLogin ? 'Log In' : 'Get Started'}</button>
+                <Auth setIsAuth={setIsAuth} />
             </form>
     </div>
   )

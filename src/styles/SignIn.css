@@ -82,3 +82,9 @@
 .switch.active {
     background-color: #ccc;
 }
+
+.login-with-google-btn {
+    width: 80%;
+    margin: auto;
+    border: 2px solid #000000;
+}

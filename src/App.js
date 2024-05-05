@@ -13,9 +13,9 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import React, { useState, useEffect } from "react";
 import Cookies from "universal-cookie";
-import { Auth } from "./components/Auth.js";
 import FrontPage from "./pages/FrontPage.js";
 import SignIn from "./pages/SignIn.js";
+import { Auth } from "./components/Auth.js";
 
 const cookies = new Cookies();
 
@@ -38,7 +38,7 @@ function App() {
         </Routes>
       </Router>
 
-        {/* <Auth setIsAuth={setIsAuth} /> */}
+      {/* <Auth setIsAuth={setIsAuth} /> */}
 
       </AppWrapper>
     );
