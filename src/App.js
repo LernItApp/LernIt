@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 import Home from "./pages/Home";
@@ -13,6 +13,8 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import React, { useState, useEffect } from "react";
 import Cookies from "universal-cookie";
+import FrontPage from "./pages/FrontPage.js";
+import SignIn from "./pages/SignIn.js";
 import { Auth } from "./components/Auth.js";
 
 const cookies = new Cookies();
@@ -26,7 +28,18 @@ function App() {
         isAuth={isAuth}
         setIsAuth={setIsAuth}
       >
-        <Auth setIsAuth={setIsAuth} />
+
+
+      <Router>
+        <Routes>
+          <Route path="/" element={<FrontPage />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="*" element={<Navigate to="/SignIn" replace />} />
+        </Routes>
+      </Router>
+
+      {/* <Auth setIsAuth={setIsAuth} /> */}
+
       </AppWrapper>
     );
   }
@@ -44,6 +57,7 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/search" element={<Search />} />
           <Route path="/terms" element={<TermsOfService />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
     </AppWrapper>
