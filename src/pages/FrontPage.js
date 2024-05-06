@@ -1,8 +1,9 @@
 import React from 'react'
+import '../styles/FrontPage.css'
 
 function FrontPage() {
   return (
-    <div>FrontPage</div>
+    <div className='container'>FrontPage</div>
   )
 }
 

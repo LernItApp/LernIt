@@ -6,6 +6,10 @@
     align-items: center;
 
     padding-top: 60px;
+    margin: 0;
 
     background-color: #d5d5d5;
+
+    /* testing styles below */
+    background-color: #f40000;
 }
