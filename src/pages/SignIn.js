@@ -14,19 +14,23 @@ function SignIn() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [signInError, SetSignInError] = useState('');
 
     const [isLogin, setIsLogin] = useState(false); // State to track sign-up/login mode
 
     const handleNameChange = (e) => {
         setName(e.target.value);
+        SetSignInError(''); // Clear the error message
     };
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
+        SetSignInError(''); // Clear the error message
     };
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
+        SetSignInError(''); // Clear the error message
     };
 
     const handleSubmit = (e) => {
@@ -57,6 +61,7 @@ function SignIn() {
             })
             .catch((error) => {
             console.log(error.message);
+            handleSignInError(error);
             });
         } else {
             // new code below wich may not work.
@@ -69,18 +74,46 @@ function SignIn() {
                 setIsAuth(true);
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
+                handleSignInError(error);
             });
+        }
+    };
+
+    // PROBLEM BEFLOWIGHNFQEWJD
+    const handleSignInError = (error) => {
+        if(!isLogin)
+            setName('');
+        
+        setEmail('');
+        setPassword('');
+
+        switch(error.code) {
+            case 'auth/user-not-found':
+                SetSignInError("User not found");
+                break;
+            case 'auth/wrong-password':
+                SetSignInError("Wrong password");
+                break;
+            case 'auth/invalid-email':
+                SetSignInError("Invalid email");
+                break;
+            case 'auth/email-already-in-use':
+                SetSignInError("Email already in use");
+                break;
+            default:
+                SetSignInError(error.message);
+                break;
         }
     };
 
     const handleSwitchSignUp = () => {
         setIsLogin(false);
+        SetSignInError(''); // Clear the error message
     };
 
     const handleSwitchLogIn = () => {
         setIsLogin(true);
+        SetSignInError(''); // Clear the error message
     };
 
     if (isAuth) {
@@ -125,6 +158,7 @@ function SignIn() {
                 />
                 <button className='submit-button' type="submit">{isLogin ? 'Log In' : 'Get Started'}</button>
                 <Auth setIsAuth={setIsAuth} />
+                <p className='SignInErrorLog'>{signInError}</p>
             </form>
     </div>
   )

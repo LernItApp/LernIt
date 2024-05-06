@@ -28,7 +28,7 @@ function App() {
         <Routes>
           {!isAuth && (
             <>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<FrontPage />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="*" element={<Navigate to="/SignIn" replace />} />
             </>
