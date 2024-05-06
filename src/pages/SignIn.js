@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import '../styles/SignIn.css';
 import Cookies from "universal-cookie";
 import { Auth } from "../components/Auth.js";
-import { getAuth, createUserWithEmailAndPassword, updateProfile  } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword , updateProfile  } from "firebase/auth";
 const auth = getAuth();
 
 const cookies = new Cookies();
@@ -36,56 +36,43 @@ function SignIn() {
         console.log('Email:', email);
         console.log('Password:', password);
 
-        // i added this below
-        createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed up 
-            const user = userCredential.user;
-            // Update user profile with full name
-            console.log("User signed up:", user);
-
-            updateProfile(auth.currentUser, {
-                displayName: name
-            }).then(() => {
-                console.log("User profile updated with full name:", name);
+        // make sure to test everything below this.
+        if(!isLogin) {
+            createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed up 
+                const user = userCredential.user;
+                // Update user profile with full name
                 console.log("User signed up:", user);
+
+                updateProfile(auth.currentUser, {
+                    displayName: name
+                }).then(() => {
+                    console.log("User profile updated with full name:", name);
+                    console.log("User signed up:", user);
+
+                    cookies.set("auth-token", user.refreshToken);
+                    setIsAuth(true);
+                });
+            })
+            .catch((error) => {
+            console.log(error.message);
+            });
+        } else {
+            // new code below wich may not work.
+            signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
 
                 cookies.set("auth-token", user.refreshToken);
                 setIsAuth(true);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
             });
-            
-            // userCredential.user.updateProfile({
-            //     displayName: name
-            // }).then(() => {
-            //     // Profile updated successfully
-            //     console.log("User profile updated with full name:", name);
-            //     console.log("User signed up:", user);
-
-            //     cookies.set("auth-token", user.refreshToken);
-            //     setIsAuth(true);
-
-            // }).catch((error) => {
-            //     // Handle errors updating profile
-            //     console.error("Error updating user profile:", error);
-            // });
-        
-
-            // user.getIdToken().then((refreshToken) => {
-            //     // Set the refresh token as a cookie
-            //     cookies.set("refresh-token", refreshToken, { path: "/" });
-            //     // Update authentication state
-            //     setIsAuth(true);
-            // }).catch((error) => {
-            //     // Handle error
-            //     console.error("Error getting user ID token:", error);
-            // });
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // ..
-        });
-        console.log("bro wahfewrvfet")
+        }
     };
 
     const handleSwitchSignUp = () => {
