@@ -4,5 +4,8 @@
     height: 100vh;
     padding: 0;
     margin: 0;
-    background-image: url("./public/background.jpg");
+    background-image: url("https://raw.githubusercontent.com/LernItApp/LernIt/ea4b4a93ad77d143069f707b7adbd3d263e4aff6/public/background.jpg");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
 }
