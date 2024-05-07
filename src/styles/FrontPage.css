@@ -52,6 +52,10 @@
     font-weight: bold;
     background-color: var(--charcoal);
     color: white;
+    transition: all 0.5s;
+}
 
-
+.btn-signup:hover {
+    background-color: rgb(120, 151, 184);
+    color: var(--charcoaldark);
 }
