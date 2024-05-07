@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
+import './Colors.css';
 import Home from "./pages/Home";
 import New from "./pages/New";
 import AppWrapper from "./components/AppWrapper";
