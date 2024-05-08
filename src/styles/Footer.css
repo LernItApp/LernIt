@@ -1,6 +1,13 @@
 .footer {
-    background-color: #d5d5d5;
-    padding: 25px;
+    background-color: var(--charcoal);
+    color: whitesmoke;
+    text-decoration: none;
+    padding: 20px;
+}
+
+.footer-item {
+    color: whitesmoke;
+    text-decoration: none;
 }
 
 .footer p {
