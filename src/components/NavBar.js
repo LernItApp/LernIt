@@ -26,6 +26,7 @@ function NavBar() {
                 <input
                 className='searchBar'
                 type="text"
+                placeholder='Search for study materials...'
                 value={inputValue}
                 onChange={handleInputChange}
                 />
