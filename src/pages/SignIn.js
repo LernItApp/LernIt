@@ -122,6 +122,7 @@ function SignIn() {
 
   return (
     <div className='signinpage'>
+            <div className='form'>
             <div className='switcher'>
             <button className={!isLogin ? 'switch active' : 'switch'} onClick={handleSwitchSignUp}>Sign Up</button>
                 <button className={isLogin ? 'switch active' : 'switch'} onClick={handleSwitchLogIn}>Log In</button>
@@ -160,6 +161,7 @@ function SignIn() {
                 <Auth setIsAuth={setIsAuth} />
                 <p className='SignInErrorLog'>{signInError}</p>
             </form>
+            </div>
     </div>
   )
 }
