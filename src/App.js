@@ -31,12 +31,17 @@ function App() {
             <>
               <Route path="/" element={<FrontPage />} />
               <Route path="/signin" element={<SignIn />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/terms" element={<TermsOfService />} />
               <Route path="*" element={<Navigate to="/signIn" replace />} />
             </>
           )}
           {isAuth && (
             <>
               <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/new" element={<New />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
