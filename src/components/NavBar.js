@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import '../styles/NavBar.css';
+import Cookies from "universal-cookie";
+import { Auth } from "../components/Auth.js";
+
+const cookies = new Cookies();
 
 function NavBar() {
+    
+    const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
 
     const [inputValue, setInputValue] = useState('');
 
@@ -24,8 +30,20 @@ function NavBar() {
                 onChange={handleInputChange}
                 />
             </li>
-            <li className="nav-item" id="nav-item"><a href="/about">About</a></li>
-            <li className="nav-item" id="nav-item"><a href="/me">Me</a></li>
+
+
+            {!isAuth && (
+            <>
+                <li className="nav-item" id="nav-item"><a href="/about">About</a></li>
+                <li className="nav-item" id="nav-item"><a href="/settings">Settings</a></li>
+            </>
+          )}
+          {isAuth && (
+            <>
+                <li className="nav-item" id="nav-item"><a href="/about">About</a></li>
+                <li className="nav-item" id="nav-item"><a href="/me">Me</a></li>
+            </>
+          )}
         </ul>
     </div>
   )

@@ -122,9 +122,9 @@ function SignIn() {
 
   return (
     <div className='signinpage'>
-            <div className='form-left'>
+            {/* <div className='form-left'>
                 <h1>From Learners, To Learners, by Learners.</h1>
-            </div>
+            </div> */}
                 <div className='form'>
                 <div className='switcher'>
                 <button className={!isLogin ? 'switch active' : 'switch'} onClick={handleSwitchSignUp}>Sign Up</button>
@@ -132,7 +132,7 @@ function SignIn() {
                 </div>
                 <form onSubmit={handleSubmit} id='form-holder'>
                     
-                <h2>{isLogin ? 'Welcome Back!' : 'Sign Up for Free'}</h2>
+                <h2 className='formTitle'>{isLogin ? 'Welcome Back!' : 'Sign Up for Free'}</h2>
 
                 {!isLogin && (
                         <input
