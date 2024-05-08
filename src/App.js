@@ -31,7 +31,7 @@ function App() {
             <>
               <Route path="/" element={<FrontPage />} />
               <Route path="/signin" element={<SignIn />} />
-              <Route path="*" element={<Navigate to="/SignIn" replace />} />
+              <Route path="*" element={<Navigate to="/signIn" replace />} />
             </>
           )}
           {isAuth && (

@@ -35,13 +35,14 @@ function NavBar() {
             {!isAuth && (
             <>
                 <li className="nav-item" id="nav-item"><a href="/about">About</a></li>
-                <li className="nav-item" id="nav-item"><a href="/settings">Settings</a></li>
+                <li className="nav-item" id="nav-item"><a href="/signin">Sign In</a></li>
             </>
           )}
           {isAuth && (
             <>
                 <li className="nav-item" id="nav-item"><a href="/about">About</a></li>
                 <li className="nav-item" id="nav-item"><a href="/me">Me</a></li>
+                <li className="nav-item" id="nav-item"><a href="/settings">Settings</a></li>
             </>
           )}
         </ul>
