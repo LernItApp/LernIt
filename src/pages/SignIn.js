@@ -122,45 +122,48 @@ function SignIn() {
 
   return (
     <div className='signinpage'>
-            <div className='form'>
-            <div className='switcher'>
-            <button className={!isLogin ? 'switch active' : 'switch'} onClick={handleSwitchSignUp}>Sign Up</button>
-                <button className={isLogin ? 'switch active' : 'switch'} onClick={handleSwitchLogIn}>Log In</button>
+            <div className='form-left'>
+                <h1>From Learners, To Learners, by Learners.</h1>
             </div>
-            <form onSubmit={handleSubmit} id='form-holder'>
-                
-               <h2>{isLogin ? 'Welcome Back!' : 'Sign Up for Free'}</h2>
+                <div className='form'>
+                <div className='switcher'>
+                <button className={!isLogin ? 'switch active' : 'switch'} onClick={handleSwitchSignUp}>Sign Up</button>
+                    <button className={isLogin ? 'switch active' : 'switch'} onClick={handleSwitchLogIn}>Log In</button>
+                </div>
+                <form onSubmit={handleSubmit} id='form-holder'>
+                    
+                <h2>{isLogin ? 'Welcome Back!' : 'Sign Up for Free'}</h2>
 
-               {!isLogin && (
+                {!isLogin && (
+                        <input
+                            type="text"
+                            value={name}
+                            placeholder='Full Name'
+                            onChange={handleNameChange}
+                            className='form-input'
+                            required
+                        />
+                    )}
                     <input
-                        type="text"
-                        value={name}
-                        placeholder='Full Name'
-                        onChange={handleNameChange}
+                        type="email"
+                        value={email}
+                        placeholder='Email Address'
+                        onChange={handleEmailChange}
                         className='form-input'
                         required
                     />
-                )}
-                <input
-                    type="email"
-                    value={email}
-                    placeholder='Email Address'
-                    onChange={handleEmailChange}
-                    className='form-input'
-                    required
-                />
-                <input
-                    type="password"
-                    value={password}
-                    placeholder='Set A Password'
-                    onChange={handlePasswordChange}
-                    className='form-input'
-                    required
-                />
-                <button className='submit-button' type="submit">{isLogin ? 'Log In' : 'Get Started'}</button>
-                <Auth setIsAuth={setIsAuth} />
-                <p className='SignInErrorLog'>{signInError}</p>
-            </form>
+                    <input
+                        type="password"
+                        value={password}
+                        placeholder='Set A Password'
+                        onChange={handlePasswordChange}
+                        className='form-input'
+                        required
+                    />
+                    <button className='submit-button' type="submit">{isLogin ? 'Log In' : 'Get Started'}</button>
+                    <Auth setIsAuth={setIsAuth} />
+                    <p className='SignInErrorLog'>{signInError}</p>
+                </form>
             </div>
     </div>
   )

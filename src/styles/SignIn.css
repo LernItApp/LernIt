@@ -1,3 +1,23 @@
+.form-left {
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+}
+
+.form-left h1 {
+    padding: 0;
+    padding-top: 20px;
+    /* padding-left: 50px;
+    padding-top: 30px; */
+    color: whitesmoke;
+    text-shadow: 1px 1px 10px black;
+    /* margin-right: auto; */
+    margin-bottom: auto;
+}
+
 .form {
     flex-direction: column;
     align-items: center;
@@ -17,6 +37,10 @@
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */
+    
+    flex-direction: row;
+    align-items: center;
+    display: flex;
 }
 #form-holder {
     border-style: solid;
