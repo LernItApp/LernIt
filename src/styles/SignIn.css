@@ -47,12 +47,12 @@
     margin: 0;
     margin-top: 20px;
     border: 2px solid;
-    /* background-color: rgb(213, 213, 213); */
+    background-color: rgba(120, 120, 120, 0.1);
     display: flex;
     flex-direction: column;
     width: 270px;
     height: auto;
-    border-radius: 15px;
+    border-radius: 5px;
     padding: 10px;
     color: white;
 
@@ -88,20 +88,24 @@
     font-size: 1.0rem;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.5s ease;
-    border: 2px solid #000000;
+    transition: all 0.3s ease;
+    border: 2px solid var(--charcoaldark);
+    background-color: var(--charcoal);
+    color: white;
 }
 
 .submit-button:hover {
-    background-color: #ccc;
+    background-color: rgb(120, 151, 184);
+    color: var(--charcoaldark);
 }
 
 .switcher {
     overflow: hidden;
-    border: 2px solid #000000;
-    background-color: #f1f1f1;
+    border: 2px solid #ffffff;
+    /* backgrou nd-color: #f1f1f1; */
     width: max-content;
-    border-radius: 2rem;
+    border-radius: 5px;
+    background-color: rgba(120, 120, 120, 0.1);
 
     /* -webkit-box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.75);
@@ -118,14 +122,15 @@
     cursor: pointer;
     padding: 10px 12px;
     transition: 0.3s;
+    color: white;
 }
 
 .switch:hover {
-    background-color: #ddd;
+    background-color: rgba(210, 210, 210, 0.65);
 }
 
 .switch.active {
-    background-color: #ccc;
+    background-color: rgba(210, 210, 210, 0.5);
 }
 
 .login-with-google-btn {
