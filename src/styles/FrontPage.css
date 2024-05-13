@@ -13,7 +13,7 @@
 .top-container {
     padding: 25px;
     margin: 0;
-    border-style: solid;
+    /* border-style: solid; */
     border-radius: 10px;
     width: 35%;
     color: white;
