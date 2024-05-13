@@ -13,7 +13,7 @@
 .top-container {
     padding: 25px;
     margin: 0;
-    /* border-style: solid; */ 
+    border-style: solid;
     border-radius: 10px;
     width: 35%;
     color: white;
@@ -22,7 +22,6 @@
     margin-left: 10%;
     text-align: left;
 }
-
 .top-text {
     padding: 0;
     margin: 0;
@@ -58,4 +57,14 @@
 .btn-signup:hover {
     background-color: rgb(120, 151, 184);
     color: var(--charcoaldark);
+}
+
+@media (max-width: 1000px) {
+    .top-container {
+        width: 70%;
+        text-align: center;
+    }
+    .btn-signup {
+        width: 70%;
+    }
 }
