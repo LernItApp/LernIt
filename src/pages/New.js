@@ -76,17 +76,19 @@ function New() {
       <input
           type="text"
           value={title}
+          className='new-input'
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Enter title"
+          placeholder="Enter studyset title"
         />
       <div className='list'>
         {items.map((item, index) => (
             <div className='test'>
-              <div className='listItem listItem1' key={index}>{item.text1}</div>
-              <div className='listItem listItem2' key={index}>{item.text2}</div>
+              <div className='items'>
+                <div className='listItem listItem1' key={index}>{item.text1}</div>
+                <div className='listItem listItem2' key={index}>{item.text2}</div>
+              </div>
               <button className='deleteButton' onClick={() => deleteItem(index)}>Delete</button>
             </div>
-            
         ))}
       </div>
       <div className='inputsDiv'>
@@ -94,12 +96,14 @@ function New() {
         <input
           type="text"
           value={input1}
+          className='new-input'
           onChange={(e) => setInput1(e.target.value)}
           placeholder="Enter Text 1"
         />
         <input
           type="text"
           value={input2}
+          className='new-input'
           onChange={(e) => setInput2(e.target.value)}
           placeholder="Enter Text 2"
         />
