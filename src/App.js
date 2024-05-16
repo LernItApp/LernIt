@@ -17,6 +17,7 @@ import Cookies from "universal-cookie";
 import FrontPage from "./pages/FrontPage.js";
 import SignIn from "./pages/SignIn.js";
 import { Auth } from "./components/Auth.js";
+import Settings from "./pages/Settings.js";
 
 const cookies = new Cookies();
 
@@ -47,6 +48,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/me" element={<Me />} />
               <Route path="/mysets" element={<MySets />} />
+              <Route path="/settings" element={<Settings />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/search" element={<Search />} />
               <Route path="/terms" element={<TermsOfService />} />
