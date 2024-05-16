@@ -1,3 +1,16 @@
 .mid-text {
     font-size: 35px;
 }
+
+.top-container-about {
+    padding: 25px;
+    margin: 0;
+    /* border-style: solid; */
+    border-radius: 10px;
+    width: 35%;
+    color: white;
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 8%;
+    text-align: left;
+}

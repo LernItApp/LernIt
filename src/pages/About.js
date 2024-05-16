@@ -4,7 +4,7 @@ import '../styles/about.css'
 function About() {
   return (
     <div className='container'>
-      <div className='top-container'>
+      <div className='top-container-about'>
         <h1 className='top-text'>About Us</h1>
         <p>LernIt is an open source learning platform that is committed to making education more accessible than ever before! Our mission is to empower learners of all ages and backgrounds by offering a wide range of customizable solutions and cutting-edge features tailored to enhance the learning experience. </p>
         
