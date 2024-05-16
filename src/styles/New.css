@@ -1,10 +1,12 @@
 .inputsDiv {
-    border-style: solid;
 }
 
 .list {
     border-style: solid;
+    height: calc(100% - 250px);
     padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .listItem {
@@ -20,8 +22,6 @@
     width: 50%;
 
     border-radius: 10px;
-
-
 }
 
 .listItem1 {
