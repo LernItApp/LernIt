@@ -56,6 +56,17 @@
     border-radius: 10px;
 }
 
+.deleteButton {
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+
+    margin: 0;
+
+    border-radius: 10px;
+}
+
 .container {
     width: 80%;
     padding: 16px;
