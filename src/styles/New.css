@@ -5,6 +5,7 @@
     border-style: solid;
     height: calc(100% - 250px);
     padding: 20px;
+    margin-bottom: 10px;
     overflow-x: hidden;
     overflow-y: auto;
 }
