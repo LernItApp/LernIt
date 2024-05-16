@@ -50,7 +50,7 @@ function App() {
               <Route path="/mysets" element={<MySets />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/privacy" element={<Privacy />} />
-              <Route path="/search" element={<Search />} />
+              <Route path="/search/:id" element={<Search />} />
               <Route path="/terms" element={<TermsOfService />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </>

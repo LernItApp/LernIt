@@ -15,6 +15,16 @@ function NavBar() {
         setInputValue(event.target.value);
     };
 
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+        console.log('Enter Clicked...Searching for:', inputValue);
+        
+        // send user to search page with their query.
+        document.location.href = `/search/${inputValue}`;
+
+      }
+    }
+
   return (
     <div className='make-sticky'>
         <ul className="navbar">
@@ -29,6 +39,7 @@ function NavBar() {
                 placeholder='Search for study materials...'
                 value={inputValue}
                 onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
                 />
             </li>
 
