@@ -1,8 +1,15 @@
-import React from 'react'
+import { React, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 
 function Search() {
   const { id } = useParams();
+
+  useEffect(() => {
+    const searchBar = document.querySelector('.searchBar');
+    if (searchBar) {
+      searchBar.value = id;
+    }
+  }, [id]);
 
   return (
     <div>
