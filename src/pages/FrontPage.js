@@ -49,7 +49,12 @@ function FrontPage() {
         </div>
       )}
       {isAuth && (
-        <h1>efw</h1>
+        <>
+        <h1>Welcome back, {displayName}</h1>
+        <div>
+          recent study sets andn other thingshere
+        </div>
+        </>
       )}
     </div>
   );
