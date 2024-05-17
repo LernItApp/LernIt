@@ -41,7 +41,7 @@ function App() {
           )}
           {isAuth && (
             <>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<FrontPage />} />
               <Route path="/home" element={<Home />} />
               <Route path="/new" element={<New />} />
               <Route path="/about" element={<About />} />

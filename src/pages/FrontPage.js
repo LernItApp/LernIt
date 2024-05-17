@@ -1,16 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react';
 import '../styles/FrontPage.css'
+import { UserStudySets } from "../components/UserStudySets.js";
+import { db, auth } from "../firebase-config";
+import {
+    collection,
+    addDoc,
+    getDocs,
+    where,
+    serverTimestamp,
+    onSnapshot,
+    query,
+    orderBy,
+    doc,
+    getDoc
+} from "firebase/firestore";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 function FrontPage() {
+  const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
+  
   return (
-    <div className='container'>
-      <div className='top-container'>
-        <h1 className='top-text'>Tired of long late nights studying for tests?</h1>
-        <p>LernIt is an open source learning platform that is committed to making education more accessible than ever before! Our mission is to empower learners of all ages and backgrounds by offering a wide range of customizable solutions and cutting-edge features tailored to enhance the learning experience. </p>
-        <a href="/signin"><button className='btn-signup'>Sign Up Now</button> </a>
-      </div>
+    <div>
+      {!isAuth && (
+        <div className='container'>
+          <div className='top-container'>
+            <h1 className='top-text'>Tired of long late nights studying for tests?</h1>
+            <p>LernIt is an open source learning platform that is committed to making education more accessible than ever before! Our mission is to empower learners of all ages and backgrounds by offering a wide range of customizable solutions and cutting-edge features tailored to enhance the learning experience. </p>
+            <a href="/signin"><button className='btn-signup'>Sign Up Now</button></a>
+          </div>
+        </div>
+      )}
+      {isAuth && (
+        <h1>efw</h1>
+      )}
     </div>
-  )
+  );
 }
 
-export default FrontPage
+export default FrontPage;
