@@ -21,6 +21,7 @@ const cookies = new Cookies();
 function FrontPage() {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
   const [displayName, setDisplayName] = useState('Unknown User');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -32,10 +33,15 @@ function FrontPage() {
       } else {
         setDisplayName('Unknown User');
       }
+      setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
+
+  if (loading && isAuth) {
+    return <div>Loading...</div>;
+  }
   
   return (
     <div>
