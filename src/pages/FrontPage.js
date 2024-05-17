@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/FrontPage.css'
 import { UserStudySets } from "../components/UserStudySets.js";
 import { db, auth } from "../firebase-config";
@@ -20,6 +20,22 @@ const cookies = new Cookies();
 
 function FrontPage() {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
+  const [displayName, setDisplayName] = useState('Unknown User');
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        const name = user.displayName;
+        if (name) {
+          setDisplayName(name);
+        }
+      } else {
+        setDisplayName('Unknown User');
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
   
   return (
     <div>

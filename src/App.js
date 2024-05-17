@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import logo from './logo.svg';
 import './App.css';
 import './Colors.css';
-import Home from "./pages/Home";
 import New from "./pages/New";
 import AppWrapper from "./components/AppWrapper";
 import TermsOfService from "./pages/TermsOfService";
@@ -42,7 +41,6 @@ function App() {
           {isAuth && (
             <>
               <Route path="/" element={<FrontPage />} />
-              <Route path="/home" element={<Home />} />
               <Route path="/new" element={<New />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
