@@ -56,32 +56,14 @@ function SetViewer() {
                     <h2>By: {studyList.user}</h2>
                 </div>
                 <div className='container-halves' id='half2'>
-
                     {studyList.items.map((item, index) => (
                         <div className='list-item-pair' key={index}>
                             <div className='list-item'>{item.text1}</div>
                             <div className='list-item'>{item.text2}</div>
                         </div>
                     ))}
-
-                    {/* <div className='list-item-pair'>
-                        <div className='list-item'></div>
-                        <div className='list-item'></div>
-                    </div>
-                    <div className='list-item-pair'></div> */}
                 </div>
             </div>
-
-            // <div>
-            //     <h1>{studyList.title}</h1>
-            //     <h2>By: {studyList.user}</h2>
-            //     {studyList.items.map((item, index) => (
-            //         <div key={index}>
-            //             <h3>{item.text1}</h3>
-            //             <h3>{item.text2}</h3>
-            //         </div>
-            //     ))}
-            // </div>
         ) : (
             <p>Loading...</p>
         )}
