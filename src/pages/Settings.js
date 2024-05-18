@@ -1,8 +1,39 @@
-import React from 'react'
+import { React, useEffect, useState } from 'react'
+import '../styles/ToggleButton.css'
 
 function Settings() {
+  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+  
   return (
-    <div>Settings</div>
+    <div>
+      <div>
+        <h1>Settings</h1>
+        <p>Edit settings for your account and more!</p>
+      </div>
+
+      <div>
+        <label> Name: <input name="Name" value={name} onChange={handleNameChange} /> </label>
+        <label> Username: <input name="Username" value={username} onChange={handleUsernameChange} /> </label>
+        <label> Email: <input name="Email" value={email} onChange={handleEmailChange} /> </label>
+        <hr />
+
+      </div>
+
+    </div>
   )
 }
 
