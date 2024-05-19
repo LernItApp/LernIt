@@ -1,7 +1,7 @@
 // Filename: ./components/ToggleSwitch.js
 
 import React from "react";
-import '../styles/ToggleSwitch.css';
+// import '../styles/ToggleSwitch.css';
 
 const ToggleSwitch = ({ label, isChecked, onChange }) => {
 return (

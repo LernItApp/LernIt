@@ -48,7 +48,7 @@ function Settings() {
         <ToggleSwitch label="Dark Mode" isChecked={darkmode} onChange={handleDarkModeToggle} />
         <ToggleSwitch label="Sound Effects" isChecked={soundeffects} onChange={handleSoundEffectsToggle} />
         <ToggleSwitch label="Notifications" isChecked={notifications} onChange={handleNotificationsToggle} />
- l
+ 
       </div>
 
     </div>
