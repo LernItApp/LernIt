@@ -1,5 +1,4 @@
 import { React, useEffect, useState } from 'react'
-import '../styles/ToggleButton.css'
 import ToggleSwitch from '../components/ToggleSwitch';
 
 function Settings() {
@@ -21,6 +20,17 @@ function Settings() {
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
+  const handleDarkModeToggle = () => {
+    setDarkMode((prevDarkMode) => !prevDarkMode);
+  };
+
+  const handleSoundEffectsToggle = () => {
+    setSoundEffects((prevSoundEffects) => !prevSoundEffects);
+  };
+
+  const handleNotificationsToggle = () => {
+    setNotifications((prevNotifications) => !prevNotifications);
+  };
   
   return (
     <div>
@@ -35,11 +45,10 @@ function Settings() {
         <label> Email <input name="Email" value={email} onChange={handleEmailChange} /> </label>
         <hr />
         {/* make the below work with the usestate! */}
-        <ToggleSwitch label="Dark Mode" />
-        <ToggleSwitch label="Sound Effects" />
-        <ToggleSwitch label="Notifications" />
-
-
+        <ToggleSwitch label="Dark Mode" isChecked={darkmode} onChange={handleDarkModeToggle} />
+        <ToggleSwitch label="Sound Effects" isChecked={soundeffects} onChange={handleSoundEffectsToggle} />
+        <ToggleSwitch label="Notifications" isChecked={notifications} onChange={handleNotificationsToggle} />
+ l
       </div>
 
     </div>

@@ -1,16 +1,16 @@
 // Filename: ./components/ToggleSwitch.js
 
 import React from "react";
-import '../styles/ToggleButton.css';
+import '../styles/ToggleSwitch.css';
 
-const ToggleSwitch = ({ label }) => {
+const ToggleSwitch = ({ label, isChecked, onChange }) => {
 return (
 	<div className="togglecontainer">
 	<p>{label}</p>
 	{/* {label}{" "} */}
 	<div className="toggle-switch">
 		<input type="checkbox" className="checkbox"
-			name={label} id={label} />
+			name={label} id={label} checked={isChecked} onChange={onChange} />
 		<label className="label" htmlFor={label}>
 		<span className="inner" />
 		<span className="switch" />
