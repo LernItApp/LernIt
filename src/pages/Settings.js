@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from 'react'
 //import ToggleSwitch from '../components/ToggleSwitch';
+import styles from '../styles/Settings.module.css';
 
 function Settings() {
   const [name, setName] = useState('');
@@ -39,14 +40,18 @@ function Settings() {
         <p>Edit settings for your account and more!</p>
       </div>
 
-      <div>
-        <label> Name <input name="Name" value={name} onChange={handleNameChange} /> </label>
-        <label> Username <input name="Username" value={username} onChange={handleUsernameChange} /> </label>
-        <label> Email <input name="Email" value={email} onChange={handleEmailChange} /> </label>
+      <div className={`${styles.container}`}>
+        <div className={`${styles.inputcontainer}`}>
+          <label> Name <input name="Name" value={name} onChange={handleNameChange} /> </label>
+          <label> Username <input name="Username" value={username} onChange={handleUsernameChange} /> </label>
+          <label> Email <input name="Email" value={email} onChange={handleEmailChange} /> </label>
+        </div>
         <hr />
-        <label> Dark Mode <input name="DarkMode" type="checkbox" checked={darkmode} onChange={handleDarkModeToggle} /> </label>
-        <label> Sound Effects <input name="SoundEffects" type="checkbox" checked={soundeffects} onChange={handleSoundEffectsToggle} /> </label>
-        <label> Notifications <input name="Notifications" type="checkbox" checked={notifications} onChange={handleNotificationsToggle} /> </label>
+        <div className={`${styles.inputcontainer}`}>
+          <label> Dark Mode <input name="DarkMode" type="checkbox" checked={darkmode} onChange={handleDarkModeToggle} /> </label>
+          <label> Sound Effects <input name="SoundEffects" type="checkbox" checked={soundeffects} onChange={handleSoundEffectsToggle} /> </label>
+          <label> Notifications <input name="Notifications" type="checkbox" checked={notifications} onChange={handleNotificationsToggle} /> </label>
+        </div>
 
 
 
