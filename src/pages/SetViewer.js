@@ -13,6 +13,7 @@ import {
     doc,
     getDoc
   } from "firebase/firestore";
+import '../styles/SetViewer.css';
 
 function SetViewer() {
     const { id } = useParams();
@@ -59,7 +60,7 @@ function SetViewer() {
                     {studyList.items.map((item, index) => (
                         <div className='list-item-pair' key={index}>
                             <div className='list-item'>{item.text1}</div>
-                            <div className='list-item'>{item.text2}</div>
+                            <div className='list-item list-item2'>{item.text2}</div>
                         </div>
                     ))}
                 </div>
