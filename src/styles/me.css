@@ -26,6 +26,7 @@
 
 .user-sets-container-title {
     margin-top: 50px;
+    margin-bottom: 2px;
 }
 
 .username-sets {
@@ -39,10 +40,11 @@
 .user-sets-container {
     border-style: solid;
     margin-top: 0px;
-    height: 100px;
+    height: 120px;
+    overflow: auto;
     border-style: solid;
     background-color: #e0e0e0;
-    padding: 15px;
+    padding: 10px;
     padding-top: 10px;
     border-radius: 10px;
 }

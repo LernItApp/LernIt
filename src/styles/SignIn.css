@@ -81,21 +81,25 @@
 }
 
 .submit-button {
+    font-weight: 500;
+
     padding: 0.7rem;
     margin-left: auto; /* Center the button horizontally */
     margin-right: auto; /* Center the button horizontally */
     width: 80%;
     font-size: 1.0rem;
-    border-radius: 5px;
+    border-radius: 3px;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 2px solid var(--charcoaldark);
-    background-color: var(--charcoal);
-    color: white;
+    /* border: 2px solid var(--charcoaldark);
+    background-color: var(--charcoal); */
+    background-color: rgb(241, 241, 241);
+    border: 2px solid #000000;
+    color: rgb(113, 113, 113);
 }
 
 .submit-button:hover {
-    background-color: rgb(120, 151, 184);
+    background-color: rgb(189, 189, 189);
     color: var(--charcoaldark);
 }
 
@@ -138,4 +142,8 @@
     margin: auto;
     border: 2px solid #000000;
     margin-top: 10px;
+}
+.login-with-google-btn:hover {
+    background-color: rgb(189, 189, 189);
+    color: var(--charcoaldark);
 }

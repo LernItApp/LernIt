@@ -30,6 +30,7 @@
     font-size: 45px;
     /* offset-x | offset-y | blur-radius | color */
     text-shadow: 1px 1px 10px black;
+    text-align: left;
 }
 
 .top-container p {

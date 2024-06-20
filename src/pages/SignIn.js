@@ -155,7 +155,7 @@ function SignIn() {
                     <input
                         type="password"
                         value={password}
-                        placeholder='Set A Password'
+                        placeholder='Password'
                         onChange={handlePasswordChange}
                         className='form-input'
                         required

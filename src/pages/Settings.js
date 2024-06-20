@@ -1,8 +1,11 @@
 import { React, useEffect, useState } from 'react'
 //import ToggleSwitch from '../components/ToggleSwitch';
 import styles from '../styles/Settings.module.css';
+import { useAuth } from "../components/AuthContext .js";
 
 function Settings() {
+  const { signUserOut } = useAuth();
+
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -32,6 +35,13 @@ function Settings() {
   const handleNotificationsToggle = () => {
     setNotifications((prevNotifications) => !prevNotifications);
   };
+
+  const handleSignOut = () => {
+    // Add your sign-out logic here
+    signUserOut();
+    console.log('Signed Out');
+    window.location.reload();
+  };
   
   return (
     <div>
@@ -52,6 +62,8 @@ function Settings() {
           <label> Sound Effects <input name="SoundEffects" type="checkbox" checked={soundeffects} onChange={handleSoundEffectsToggle} /> </label>
           <label> Notifications <input name="Notifications" type="checkbox" checked={notifications} onChange={handleNotificationsToggle} /> </label>
         </div>
+        <hr />
+        <button type="button" onClick={handleSignOut}> Sign Out </button>
 
 
 
