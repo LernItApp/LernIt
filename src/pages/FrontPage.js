@@ -21,7 +21,55 @@ const cookies = new Cookies();
 function FrontPage() {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
   const [displayName, setDisplayName] = useState('Unknown User');
+  const [myStudyLists, setMyStudyLists] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStudyGuides = async () => {
+      try {
+          const querySnapshot = await getDocs(collection(db, 'studylists'));
+
+          const studyGuidesArray = [];
+
+          querySnapshot.forEach((doc) => {
+              if (doc.exists()) {
+                  const { title, user, userId, termCount } = doc.data();
+                  const studyGuide = {
+                      id: doc.id,
+                      userid: userId,
+                      user: user,
+                      title: title,
+                      termCount: termCount
+                  };
+
+                  // for testing purposes.
+                  console.log("guide id: " + studyGuide["userid"]);
+                  // console.log("user id: " + auth.currentUser.uid);
+                  console.log("user id: " + auth.currentUser.uid + "\n");
+                  console.log("term count: " + studyGuide["termCount"] + "\n");
+                  
+                  // only adds studylist if user made it.
+                  if(studyGuide["userid"] == auth.currentUser.uid)
+                    studyGuidesArray.push(studyGuide);
+
+                  setMyStudyLists(studyGuidesArray);
+              } else {
+                  console.log("Document does not exist:", doc.id);
+              }
+          });
+
+          console.log("Study Guides Array:", studyGuidesArray);
+          return studyGuidesArray;
+      } catch (error) {
+          console.error("Error fetching study guides:", error);
+          // Handle error fetching study guides
+          return [];
+      }
+    };
+
+    fetchStudyGuides();
+
+  }, []);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -56,9 +104,38 @@ function FrontPage() {
       )}
       {isAuth && (
         <>
-        <h1>Welcome back, {displayName}</h1>
+        <h1 className='welcomebacktext'>Welcome back, {displayName}</h1>
         <div>
-          recent study sets andn other thingshere
+
+          {/* <div className='list-container'>
+            <h2 className='list-container-title'>Recent Study Lists</h2>
+            <div className='list-item-container'></div>
+          </div> */}
+
+          <div className='list-container'>
+            <h2 className='list-container-title'>Trending Study Lists</h2>
+            <div className='list-item-container'></div>
+          </div>
+
+          <div className='list-container'>
+            <h2 className='list-container-title'>Your Study Lists</h2>
+            <div className='list-item-container'>
+
+              { myStudyLists ? (
+              myStudyLists.map((guide) => (
+
+                <a className='box-a' href={`/list/${guide.id}`}>
+                <div className='exampleBox' key={guide.id}>
+                  <p className='exampleBoxText'>{guide.title}</p>
+                  <p className='exampleBoxText'>{guide.termCount}</p>
+                </div> 
+                </a>
+
+              ))
+              ) : ( <div className='exampleBox'>study list loading... 😔</div> )}
+
+            </div>
+          </div>
         </div>
         </>
       )}

@@ -69,3 +69,50 @@
         width: 70%;
     }
 }
+
+.list-container {
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 25px;
+}
+
+.list-container-title {
+    text-align: left;
+    margin: 8px;
+}
+
+.list-item-container {
+    height: 150px;
+    padding: 5px;
+    padding-bottom: 15px;
+    border-style: solid;
+    border-radius: 10px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.exampleBox {
+    height: 100%;
+    width: 260px;
+    border-style: solid;
+    border-radius: 10px;
+    margin: 5px;
+    background-color: rgb(208, 216, 221);
+}
+
+.exampleBox:hover {
+    background-color: rgb(162, 184, 208);
+    transform: scale(1.05);
+}
+
+.box-a {   
+    text-decoration: none;
+    color: black;
+}
+
+.welcomebacktext {
+    margin-bottom: 1em;
+}

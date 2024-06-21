@@ -55,6 +55,9 @@ function New() {
         userId: auth.currentUser.uid, // Save user's ID
         isPublic: true, // or false depending on your logic
         title: title,
+        termCount: items.length, // Save the number of term pairs
+        rating: 0.0,
+        timesStudied: 0,
         createdAt: serverTimestamp()
       });
   

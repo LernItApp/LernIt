@@ -81,10 +81,10 @@ function Settings() {
 
       <div className={styles.container}>
         <div className="grid-container">
-          <p className='grid-item'>Name</p>
+          {/* <p className='grid-item'>Name</p>
           <input className='grid-item' name="Name" value={name} onChange={handleNameChange} />
           <button className="settings-button" onClick={handleNameChangeSubmit}>Change</button>
-          {/* <p className='grid-item'>Username</p>
+          <p className='grid-item'>Username</p>
           <input className='grid-item' name="Username" value={username} onChange={handleUsernameChange} />
           <button className="settings-button" onClick={handleUserNameChangeSubmit}>Change</button>
           <p className='grid-item'>Email</p>
