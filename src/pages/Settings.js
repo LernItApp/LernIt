@@ -17,13 +17,24 @@ function Settings() {
     setName(event.target.value);
   };
 
+  const handleNameChangeSubmit = (event) => {
+
+  };
+
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
+  };
+
+  const handleUserNameChangeSubmit = (event) => {
   };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
+
+  const handleEmailChangeSubmit = (event) => {
+  };
+
   const handleDarkModeToggle = () => {
     setDarkMode((prevDarkMode) => !prevDarkMode);
   };
@@ -51,18 +62,24 @@ function Settings() {
       </div>
 
       <div className={`${styles.container}`}>
-        <div className={`${styles.inputcontainer}`}>
-          <label> Name <input name="Name" value={name} onChange={handleNameChange} /> </label>
-          <label> Username <input name="Username" value={username} onChange={handleUsernameChange} /> </label>
-          <label> Email <input name="Email" value={email} onChange={handleEmailChange} /> </label>
+        <div className={`grid-container`}>
+          <p className='grid-item'>Name</p>
+          <input className='grid-item' name="Name" value={name} onChange={handleNameChange} />
+          <button className="settings-button" onClick={handleNameChangeSubmit}>Change</button>
+          <p className='grid-item'>Username</p>
+          <input className='grid-item' name="Username" value={username} onChange={handleUsernameChange} />
+          <button className="settings-button" onClick={handleUserNameChangeSubmit}>Change</button>
+          <p className='grid-item'>Email</p>
+          <input className='grid-item' name="Email" value={email} onChange={handleEmailChange} />
+          <button className="settings-button" onClick={handleEmailChangeSubmit}>Change</button>
         </div>
         <hr />
-        <div className={`${styles.inputcontainer}`}>
+        {/* <div className={`${styles.inputcontainer}`}>
           <label> Dark Mode <input name="DarkMode" type="checkbox" checked={darkmode} onChange={handleDarkModeToggle} /> </label>
           <label> Sound Effects <input name="SoundEffects" type="checkbox" checked={soundeffects} onChange={handleSoundEffectsToggle} /> </label>
           <label> Notifications <input name="Notifications" type="checkbox" checked={notifications} onChange={handleNotificationsToggle} /> </label>
         </div>
-        <hr />
+        <hr /> */}
         <button type="button" onClick={handleSignOut}> Sign Out </button>
 
 
