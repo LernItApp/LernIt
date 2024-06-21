@@ -5,6 +5,7 @@ import { db, auth } from "../firebase-config";
 import {
     collection,
     addDoc,
+    updateDoc,
     where,
     serverTimestamp,
     onSnapshot,
@@ -29,6 +30,12 @@ function SetViewer() {
                 const data = docSnap.data();
                 if (data && data.items) {
                     setStudyList(data);
+
+                    // Increment the timesStudied field by 1
+                    await updateDoc(docRef, {
+                        timesStudied: data.timesStudied + 1
+                    });
+                    
                 } else {
                     console.log("Document data is invalid.");
                 }
