@@ -4,15 +4,10 @@ import { UserStudySets } from "../components/UserStudySets.js";
 import { db, auth } from "../firebase-config";
 import {
     collection,
-    addDoc,
     getDocs,
-    where,
-    serverTimestamp,
-    onSnapshot,
     query,
     orderBy,
-    doc,
-    getDoc
+    limit
 } from "firebase/firestore";
 import Cookies from "universal-cookie";
 
@@ -22,6 +17,7 @@ function FrontPage() {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
   const [displayName, setDisplayName] = useState('Unknown User');
   const [myStudyLists, setMyStudyLists] = useState(null);
+  const [trendingStudyLists, setTrendingStudyLists] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -72,6 +68,43 @@ function FrontPage() {
   }, []);
 
   useEffect(() => {
+    const fetchTrendingStudyLists = async () => {
+      try {
+        const q = query(
+          collection(db, 'studylists'),
+          orderBy('timesStudied', 'desc'),
+          limit(10)
+        );
+
+        const querySnapshot = await getDocs(q);
+        const trendingArray = [];
+
+        querySnapshot.forEach((doc) => {
+          if (doc.exists()) {
+            const { title, user, userId, termCount, timesStudied } = doc.data();
+            trendingArray.push({
+              id: doc.id,
+              user,
+              title,
+              termCount,
+              timesStudied
+            });
+          } else {
+            console.log("Document does not exist:", doc.id);
+          }
+        });
+
+        setTrendingStudyLists(trendingArray);
+      } catch (error) {
+        console.error("Error fetching trending study lists:", error);
+        // Handle error fetching trending study lists
+      }
+    };
+
+    fetchTrendingStudyLists();
+  }, []);
+
+  useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
         const name = user.displayName;
@@ -107,33 +140,40 @@ function FrontPage() {
         <h1 className='welcomebacktext'>Welcome back, {displayName}</h1>
         <div>
 
-          {/* <div className='list-container'>
-            <h2 className='list-container-title'>Recent Study Lists</h2>
-            <div className='list-item-container'></div>
-          </div> */}
-
           <div className='list-container'>
             <h2 className='list-container-title'>Trending Study Lists</h2>
-            <div className='list-item-container'></div>
+            <div className='list-item-container'>
+              {trendingStudyLists ? (
+                trendingStudyLists.map((guide) => (
+                  <a className='box-a' href={`/list/${guide.id}`} key={guide.id}>
+                    <div className='exampleBox'>
+                      <p className='exampleBoxText'>{guide.title}</p>
+                      <p className='exampleBoxText'>{guide.termCount}</p>
+                      <p className='exampleBoxText'>Times Studied: {guide.timesStudied}</p>
+                    </div>
+                  </a>
+                ))
+              ) : (
+                <div className='exampleBox'>Loading trending study lists... 😔</div>
+              )}
+            </div>
           </div>
 
           <div className='list-container'>
             <h2 className='list-container-title'>Your Study Lists</h2>
             <div className='list-item-container'>
-
-              { myStudyLists ? (
-              myStudyLists.map((guide) => (
-
-                <a className='box-a' href={`/list/${guide.id}`}>
-                <div className='exampleBox' key={guide.id}>
-                  <p className='exampleBoxText'>{guide.title}</p>
-                  <p className='exampleBoxText'>{guide.termCount}</p>
-                </div> 
-                </a>
-
-              ))
-              ) : ( <div className='exampleBox'>study list loading... 😔</div> )}
-
+              {myStudyLists ? (
+                myStudyLists.map((guide) => (
+                  <a className='box-a' href={`/list/${guide.id}`} key={guide.id}>
+                    <div className='exampleBox'>
+                      <p className='exampleBoxText'>{guide.title}</p>
+                      <p className='exampleBoxText'>{guide.termCount}</p>
+                    </div> 
+                  </a>
+                ))
+              ) : (
+                <div className='exampleBox'>Study list loading... 😔</div>
+              )}
             </div>
           </div>
         </div>
