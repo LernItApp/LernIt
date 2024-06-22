@@ -12,7 +12,8 @@ import {
     query,
     orderBy,
     doc,
-    getDoc
+    getDoc,
+    limit
   } from "firebase/firestore";
 
 function Me() {
@@ -42,35 +43,44 @@ function Me() {
     return () => unsubscribe();
   }, []);
 
-  const [studyLists, setStudyLists] = useState(null);
+  const [myStudyLists, setMyStudyLists] = useState(null);
 
   useEffect(() => {
     const fetchStudyGuides = async () => {
       try {
-          const querySnapshot = await getDocs(collection(db, 'studylists'));
+          const q = query(
+            collection(db, 'studylists'),
+            limit(10)
+          );
+
+          const querySnapshot = await getDocs(q);
+
+          // const querySnapshot = await getDocs(collection(db, 'studylists'));
 
           const studyGuidesArray = [];
 
           querySnapshot.forEach((doc) => {
               if (doc.exists()) {
-                  const { title, user, userId } = doc.data();
+                  const { title, user, userId, termCount } = doc.data();
                   const studyGuide = {
                       id: doc.id,
                       userid: userId,
                       user: user,
-                      title: title
+                      title: title,
+                      termCount: termCount
                   };
 
                   // for testing purposes.
                   console.log("guide id: " + studyGuide["userid"]);
-                  console.log("user id: " + auth.currentUser.uid);
+                  // console.log("user id: " + auth.currentUser.uid);
                   console.log("user id: " + auth.currentUser.uid + "\n");
+                  console.log("term count: " + studyGuide["termCount"] + "\n");
                   
                   // only adds studylist if user made it.
                   if(studyGuide["userid"] == auth.currentUser.uid)
                     studyGuidesArray.push(studyGuide);
 
-                  setStudyLists(studyGuidesArray);
+                  setMyStudyLists(studyGuidesArray);
               } else {
                   console.log("Document does not exist:", doc.id);
               }
@@ -99,12 +109,23 @@ function Me() {
         {photoURL && <img className='profileImage' src={photoURL} alt="Profile" />}
         <h1 className='username'>{displayName}</h1>
       </div>
-      <div className='user-sets-container-title'>
-        <h2 className='username-sets'>{displayName}'s study sets</h2>
-      </div>
-      <div className='user-sets-container'>
-      <UserStudySets/>
-      </div>
+      <div className='list-container'>
+            <h2 className='list-container-title'>Your Study Lists</h2>
+            <div className='list-item-container'>
+              {myStudyLists ? (
+                myStudyLists.map((guide) => (
+                  <a className='box-a' href={`/list/${guide.id}`} key={guide.id}>
+                    <div className='exampleBox'>
+                      <p className='exampleBoxText'>{guide.title}</p>
+                      <p className='exampleBoxText'>{guide.termCount}</p>
+                    </div> 
+                  </a>
+                ))
+              ) : (
+                <div className='exampleBox'>Study list loading... 😔</div>
+              )}
+            </div>
+          </div>
     </div>
   );
 }

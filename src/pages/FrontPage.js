@@ -23,7 +23,14 @@ function FrontPage() {
   useEffect(() => {
     const fetchStudyGuides = async () => {
       try {
-          const querySnapshot = await getDocs(collection(db, 'studylists'));
+          const q = query(
+            collection(db, 'studylists'),
+            limit(10)
+          );
+
+          const querySnapshot = await getDocs(q);
+
+          // const querySnapshot = await getDocs(collection(db, 'studylists'));
 
           const studyGuidesArray = [];
 
