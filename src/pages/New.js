@@ -10,8 +10,12 @@ import {
   query,
   orderBy,
 } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 function New() {
+
+  let navigate = useNavigate(); 
+
   const [items, setItems] = useState([]);
   const [input1, setInput1] = useState('');
   const [input2, setInput2] = useState('');
@@ -49,7 +53,7 @@ function New() {
 
     try {
       // Save the data array to Firestore
-      await addDoc(collection(db, "studylists"), {
+      const docRef = await addDoc(collection(db, "studylists"), {
         items: dataToSave,
         user: auth.currentUser.displayName,
         userId: auth.currentUser.uid, // Save user's ID
@@ -62,6 +66,10 @@ function New() {
       });
   
       console.log("List successfully saved to Firestore.");
+      
+      let path = `/list/${docRef.id}`; 
+      navigate(path);
+
     } catch (error) {
       console.error("Error saving list to Firestore:", error);
     }
