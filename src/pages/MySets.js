@@ -1,5 +1,4 @@
-import React from 'react'
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { db, auth } from "../firebase-config";
 import {
@@ -13,10 +12,10 @@ import {
     orderBy,
     doc,
     getDoc
-  } from "firebase/firestore";
+} from "firebase/firestore";
+import styles from '../styles/MySets.module.css'; // Import CSS module
 
 function MySets() {
-
   const [studyLists, setStudyLists] = useState(null);
 
   useEffect(() => {
@@ -66,19 +65,20 @@ function MySets() {
 
 
   return (
-    <div>
+    <div className={styles.container1}>
       <h1>Study Lists</h1>
-      <ul>
+      <div className={styles.container}>
         { studyLists ? (
           studyLists.map((guide) => (
-          
-          <li key={guide.id}> <a href={`/list/${guide.id}`}> {guide.title} : {guide.user} </a> </li> 
+          <a className={styles.atagsinmysets} href={`/list/${guide.id}`}>
+            <div className={styles.boxthingies} key={guide.id}> {guide.title} </div> 
+          </a>
           
           ))
         ) : ( <p>Loading...</p> )}
-      </ul>
+      </div>
     </div>
   )
 }
 
-export default MySets
+export default MySets;

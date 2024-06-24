@@ -1,0 +1,49 @@
+.atagsinmysets {
+    color: black;
+    text-decoration: none;
+    width: 100%;
+}
+
+.mysetsbox {
+    background-color: rgb(241, 241, 241);
+    border: 2px solid #000000;
+    color: rgb(113, 113, 113);
+}
+
+.boxthingies {
+    background-color: rgb(241, 241, 241);
+    border: 2px solid #000000;
+    border-radius: 8px;
+    color: rgb(113, 113, 113);
+    width: 100%;
+    height: 3.5em;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 4px;
+    margin-bottom: 4px;
+    color: black;
+}
+
+.container {
+    border: 2px solid #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 50%;
+    border-radius: 8px;
+
+    padding: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.container1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
