@@ -10,6 +10,7 @@
     padding: 15px;
     border-radius: 10px;
     display: flex;
+    margin-bottom: 40px;
 }
 
 .profileImage {
@@ -47,4 +48,8 @@
     padding: 10px;
     padding-top: 10px;
     border-radius: 10px;
+}
+
+#watewfwef {
+    padding-bottom: 25px;
 }
