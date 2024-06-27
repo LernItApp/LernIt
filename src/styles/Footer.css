@@ -8,6 +8,11 @@
 .footer-item {
     color: whitesmoke;
     text-decoration: none;
+    transition-duration: 0ms;
+}
+
+.footer-item:hover {
+    color: rgb(167, 167, 167);
 }
 
 .footer p {

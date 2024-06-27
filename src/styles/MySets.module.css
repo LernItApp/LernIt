@@ -5,13 +5,13 @@
 }
 
 .mysetsbox {
-    background-color: rgb(241, 241, 241);
+    background-color: rgb(172, 190, 201);
     border: 2px solid #000000;
     color: rgb(113, 113, 113);
 }
 
 .boxthingies {
-    background-color: rgb(241, 241, 241);
+    background-color: rgb(172, 190, 201);
     border: 2px solid #000000;
     border-radius: 8px;
     color: rgb(113, 113, 113);
@@ -26,6 +26,16 @@
     margin-top: 4px;
     margin-bottom: 4px;
     color: black;
+
+    transition-duration: 0.3s;
+    transition-property: transform;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0ms;
+}
+
+.boxthingies:hover {
+    background-color: rgb(162, 184, 208);
+    transform: scale(1.025);
 }
 
 .container {
@@ -46,4 +56,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.studyliststitle {
+    margin-bottom: 1em;
+    text-shadow: 2px 2px 1px black;
 }

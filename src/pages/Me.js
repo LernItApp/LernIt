@@ -199,7 +199,9 @@ function Me() {
                 </a>
               ))
             ) : (
-              <div className='exampleBox'>Study list loading... 😔</div>
+              <div className='exampleBox'>
+                <p className='exampleBoxText'>Study list loading... 😔</p>
+              </div>
             )}
           </div>
       </div>

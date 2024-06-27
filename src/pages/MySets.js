@@ -66,7 +66,7 @@ function MySets() {
 
   return (
     <div className={styles.container1}>
-      <h1>Study Lists</h1>
+      <h1 className={styles.studyliststitle}>Study Lists</h1>
       <div className={styles.container}>
         { studyLists ? (
           studyLists.map((guide) => (

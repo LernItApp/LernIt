@@ -6,7 +6,8 @@
 
 .user-container {
     border-style: solid;
-    background-color: #e0e0e0;
+    border-color: #3b4b5e;
+    background-color: rgb(172, 190, 201);
     padding: 15px;
     border-radius: 10px;
     display: flex;
@@ -18,11 +19,13 @@
     width: 100px;
     height: 100px;
     object-fit: cover;
+    box-shadow: 1px 1px 1px black;
 }
 
 .username {
     margin-left: 20px;
     font-size: 35px;
+    text-shadow: 1px 1px 1px black;
 }
 
 .user-sets-container-title {

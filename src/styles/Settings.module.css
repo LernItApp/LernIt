@@ -35,3 +35,26 @@
     align-items: start;
     margin-top: 20px;
 }
+
+.settingstitle {
+    text-shadow: 1px 1px 1px black;
+}
+
+.signoutbutton {
+    padding: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    border: none;
+    box-shadow: 3px 3px black;
+    transition-duration: 0.25s;
+}
+
+.signoutbutton:hover {
+    box-shadow: 2px 2px black;
+    background-color: rgb(220, 220, 220);
+    transform: scale(1.05);
+}

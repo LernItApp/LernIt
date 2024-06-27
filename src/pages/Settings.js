@@ -75,7 +75,7 @@ function Settings() {
   return (
     <div>
       <div>
-        <h1>Settings</h1>
+        <h1 className={styles.settingstitle}>Settings</h1>
         <p>Edit settings for your account and more!</p>
       </div>
 
@@ -91,8 +91,8 @@ function Settings() {
           <input className='grid-item' name="Email" value={email} onChange={handleEmailChange} />
           <button className="settings-button" onClick={handleEmailChangeSubmit}>Change</button> */}
         </div>
-        <hr />
-        <button type="button" onClick={handleSignOut}>Sign Out</button>
+        {/* <hr /> */}
+        <button className={styles.signoutbutton} type="button" onClick={handleSignOut}>Sign Out</button>
       </div>
     </div>
   );

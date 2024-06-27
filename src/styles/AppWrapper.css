@@ -8,7 +8,9 @@
     padding-top: 60px;
     margin: 0;
 
-    background-color: #d5d5d5;
+    /* background-color: #d5d5d5; */
+    background-color: rgb(86, 102, 117);
+    color: rgb(246, 247, 251);
 
     /* testing styles below */
     /* background-color: #f40000; */
