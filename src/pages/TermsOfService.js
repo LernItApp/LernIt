@@ -3,6 +3,9 @@ import '../styles/TermsOfService.css'
 
 
 function TermsOfService() {
+
+  return ("") // temporary
+
   return (
     <div className='termsofservicecontainer'>
 

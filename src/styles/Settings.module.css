@@ -49,12 +49,12 @@
     font-weight: bold;
 
     border: none;
-    box-shadow: 3px 3px black;
+    box-shadow: 3px 3px var(--charcoal);
     transition-duration: 0.25s;
 }
 
 .signoutbutton:hover {
-    box-shadow: 2px 2px black;
-    background-color: rgb(220, 220, 220);
+    box-shadow: 2px 2px var(--charcoal);;
+    background-color: rgb(228, 228, 228);
     transform: scale(1.05);
 }

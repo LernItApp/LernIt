@@ -1,0 +1,212 @@
+.containercontainer {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.studylistcontainer {
+    width: 50%;
+}
+
+.containerhalves {
+    max-width: 600px; /* Adjust the max-width as needed */
+    margin: 0 auto; /* Center the container */
+    padding: 10px; /* Add some padding */
+    display: flex;
+    flex-direction: column;
+}
+
+.containerhalves h1 {
+    text-shadow: 1.5px 1.5px 1px black;
+}
+
+.containerhalves h2 {
+    text-shadow: 1.5px 1.5px 1px black;
+}
+
+.listitempair {
+    border-style: solid;
+    border-radius: 10px;
+    display: inline-flex; /* Use inline-flex to fit content tightly */
+    justify-content: center;
+    margin: 5px 0; /* Add some margin for spacing between pairs */
+    padding: 15px;
+    background-color: rgb(172, 190, 201);
+    border-color: var(--charcoal);
+
+    text-shadow: 0px 0px 2px black;
+
+    transition-delay: 0ms;
+    transition-duration: 300ms;
+}
+
+.listitempair:hover {
+    box-shadow: 1px 1px var(--charcoal);
+    transform: scale(1.05);
+}
+
+.listitem {
+    padding: 5px;
+    width: 50%;
+}
+
+.listitem2 {
+    border-left: 2px solid; /* Add left border */
+}
+
+.sidebuttons {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 60px;
+    padding-top: 50px;
+}
+
+/* buttons lol on the side (left) */
+.buttonstyle {
+    border-radius: 10px;
+    border-style: solid;
+    border-color: var(--charcoal);
+    background-color: rgb(172, 190, 201);
+    padding: 15px;
+    margin: 5px;
+    font-weight: 500;
+    height: 60px;
+    font-size: 15px;
+
+    transition-delay: 0ms;
+    transition-duration: 0.25s;
+}
+
+.buttonstyle:hover {
+    box-shadow: 2px 2px var(--charcoal);;
+    background-color: rgb(202, 208, 211);
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.editdeletebutton {
+    width: 50%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
+
+.otherbutton {
+    width: 50%;
+}
+
+.flashcardscontainer {
+    border-style: solid;
+    border-color: var(--charcoal);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 1;
+    width: 50%;
+    height: 75%;
+
+    background-color: rgb(172, 190, 201, 0.5);
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.closeButton {
+    height: 50px;
+    background-color: rgb(203, 217, 225);
+    border-radius: 10px;
+    border-width: 3px;
+    padding: 10px;
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    transition-delay: 0ms;
+    transition-duration: 300ms;
+}
+
+.closeButton:hover {
+    box-shadow: 1px 1px var(--charcoal);
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.closeButtonImg {
+    width: 25px;
+    height: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.flashcard {
+    border-style: solid;
+    border-color: var(--charcoal);
+    border-radius: 25px;
+    padding: 10px;
+    margin: 10px;
+    margin-top: 80px;
+    width: 70%;
+    height: 60%;
+    background-color: rgb(203, 217, 225);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.414159265359);
+    color: var(--charcoal);
+
+
+    transition-delay: 0ms;
+    transition-duration: 300ms;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* .flashcard:hover {
+    box-shadow: 1px 1px var(--charcoal);
+    transform: scale(1.025);
+    cursor: pointer;
+} */
+
+.backButton {
+    height: 40px;
+    background-color: rgb(203, 217, 225);
+    border-radius: 10px;
+    border-width: 3px;
+    padding: 5px;
+
+    margin-left: 5px;
+    margin-right: 5px;
+
+    transition-delay: 0ms;
+    transition-duration: 300ms;
+}
+
+.backButton:hover {
+    box-shadow: 1px 1px var(--charcoal);
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.flip {
+    transform: rotateY(180deg);
+}
+
+.unflip {
+    transform: rotateY(-180deg);
+}
+
+.back {
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}

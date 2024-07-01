@@ -1,6 +1,7 @@
 
 .list {
     border-style: solid;
+    border-color: var(--charcoal);
     border-radius: 10px;
     height: calc(85% - 250px);
     width: 60%;
@@ -13,7 +14,7 @@
 
 .listItem {
     border-style: solid;
-    border-color: rgb(55, 55, 55);
+    border-color: var(--charcoal);
     background-color: rgba(255, 255, 255, 0.1);
     display: inline-block;
     padding-top: 40px;

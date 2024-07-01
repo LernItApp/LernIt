@@ -9,15 +9,22 @@ import {
     addDoc,
     query,
     orderBy,
-    limit,
     getDocs,
     deleteDoc
 } from "firebase/firestore";
-import '../styles/SetViewer.css';
+import styles from '../styles/SetViewer.module.css';
+import closeButton from './x-button.png';
+import backButton from './back-button.png';
+import forwardButton from './forward-button.png';
 
 function SetViewer() {
     const { id } = useParams();
     const [studyList, setStudyList] = useState(null);
+    const [isMySet, setIsMySet] = useState(false);
+    const [flashcardsOpen, setFlashcardsOpen] = useState(false);
+    const [flipped, setFlipped] = useState(false);
+    const [frontText, setFrontText] = useState('f');
+    const [backText, setBackText] = useState('b');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,7 +47,10 @@ function SetViewer() {
                         console.log("TimesStudied after update:", updatedData.timesStudied);
 
                         setStudyList(updatedData);
-
+                        
+                        // Check if the current user is the owner of the set
+                        setIsMySet(auth.currentUser && data.userId === auth.currentUser.uid);
+                        
                         // Handle recently studied collection
                         if (auth.currentUser) {
                             await addRecentStudy(auth.currentUser.uid, {
@@ -52,8 +62,6 @@ function SetViewer() {
                     } else {
                         console.log("Document data is invalid.");
                     }
-
-                    console.log("Document data:", docSnap.data().items[0].text1);
                 } else {
                     console.log("No such document!");
                     // Handle the case where the document doesn't exist
@@ -65,21 +73,18 @@ function SetViewer() {
         };
 
         fetchData();
-    }, [id]); // Run effect whenever id changes
+    }, [id]);
 
     const addRecentStudy = async (uid, recentStudy) => {
         const recentStudyRef = collection(db, 'users', uid, 'recentstudy');
 
         try {
-            // Add new document to the recentstudy collection
             await addDoc(recentStudyRef, recentStudy);
 
-            // Check the total number of documents
             const recentStudyQuery = query(recentStudyRef, orderBy('timestamp', 'desc'));
             const querySnapshot = await getDocs(recentStudyQuery);
             const documents = querySnapshot.docs;
 
-            // If there are more than 20 documents, delete the oldest ones
             if (documents.length > 20) {
                 const oldestDoc = documents[documents.length - 1];
                 await deleteDoc(oldestDoc.ref);
@@ -89,22 +94,78 @@ function SetViewer() {
         }
     };
 
+    const handleFlashCardsClick = () => {
+        setFlashcardsOpen(true);
+    };
+
+    const handleCloseButton = () => {
+        setFlashcardsOpen(false);
+    };
+
+    const handleFlashCardBackButton = () => {
+        // Navigate to previous set
+    };
+
+    const handleFlashCardForwardButton = () => {
+        // Navigate to next set
+    };
+    
+    const handleFlashCardClick = () => {
+        setFlipped(!flipped);
+    };
+
     return (
         <>
             {studyList ? (
-                <div className='studylist-container'>
-                    <div className='container-halves'>
-                        <h1>{studyList.title}</h1>
-                        <h2>By: {studyList.user}</h2>
-                    </div>
-                    <div className='container-halves' id='half2'>
-                        {studyList.items.map((item, index) => (
-                            <div className='list-item-pair' key={index}>
-                                <div className='list-item'>{item.text1}</div>
-                                <div className='list-item list-item2'>{item.text2}</div>
+                <div className={styles.containercontainer}>
+                    <div className={styles.studylistcontainer}>
+                        <div className={styles.sidebuttons}>
+
+                            <div className={styles.otherbuttons}>
+                                <button onClick={handleFlashCardsClick} className={`${styles.otherbutton} ${styles.buttonstyle}`}>Flashcards</button>
+                                <button className={`${styles.otherbutton} ${styles.buttonstyle}`}>Multiple Choice</button>
                             </div>
-                        ))}
+
+                            {isMySet ? (
+                            <div className={styles.editdeletebuttons}>
+                                <button className={`${styles.editdeletebutton} ${styles.buttonstyle}`}>Edit</button>
+                            </div>
+                        ) : null}
+                        </div>
                     </div>
+                    <div className={styles.studylistcontainer}>
+                        <div className={styles.containerhalves}>
+                            <h1>{studyList.title}</h1>
+                            <h2>By: {studyList.user}</h2>
+                        </div>
+                        <div className={styles.containerhalves} id='half2'>
+                            {studyList.items.map((item, index) => (
+                                <div className={styles.listitempair} key={index}>
+                                    <div className={styles.listitem}>{item.text1}</div>
+                                    <div className={`${styles.listitem} ${styles.listitem2}`}>{item.text2}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {flashcardsOpen && (
+                        <div className={styles.flashcardscontainer}>
+                            <button onClick={handleCloseButton} className={styles.closeButton}>
+                                <img className={styles.closeButtonImg} src={closeButton} alt="Close button" />
+                            </button>
+                            <div className={`${styles.flashcard} ${flipped ? styles.flip : ''}`} onClick={handleFlashCardClick}>
+                                <div className={`${styles.flashcardtext} ${flipped ? styles.back : styles.front}`}>{flipped ? backText : frontText}</div>
+                            </div>
+                            <div>
+                                <button onClick={handleFlashCardBackButton} className={styles.backButton}>
+                                    <img className={styles.closeButtonImg} src={backButton} alt="Back Flashcard button" />
+                                </button>
+                                <button onClick={handleFlashCardForwardButton} className={styles.backButton}>
+                                    <img className={styles.closeButtonImg} src={forwardButton} alt="Forward Flashcard button" />
+                                </button>
+                            </div>
+                        </div>
+                    )}
                 </div>
             ) : (
                 <p>Loading...</p>
