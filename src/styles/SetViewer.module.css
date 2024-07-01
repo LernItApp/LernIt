@@ -210,3 +210,13 @@
     -ms-transform: scale(-1, 1);
     transform: scale(-1, 1);
 }
+
+.flashcardcounter {
+    position: absolute;
+    top: 20px;
+    font-size: 18px;
+    padding: 10px;
+    margin: 0;
+    font-weight: bold;
+    color: var(--charcoal);
+}

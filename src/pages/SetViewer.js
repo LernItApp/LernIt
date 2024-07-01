@@ -23,8 +23,7 @@ function SetViewer() {
     const [isMySet, setIsMySet] = useState(false);
     const [flashcardsOpen, setFlashcardsOpen] = useState(false);
     const [flipped, setFlipped] = useState(false);
-    const [frontText, setFrontText] = useState('f');
-    const [backText, setBackText] = useState('b');
+    const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -96,6 +95,8 @@ function SetViewer() {
 
     const handleFlashCardsClick = () => {
         setFlashcardsOpen(true);
+        setCurrentCardIndex(0);
+        setFlipped(false);
     };
 
     const handleCloseButton = () => {
@@ -103,11 +104,13 @@ function SetViewer() {
     };
 
     const handleFlashCardBackButton = () => {
-        // Navigate to previous set
+        setCurrentCardIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : studyList.items.length - 1));
+        setFlipped(false);
     };
 
     const handleFlashCardForwardButton = () => {
-        // Navigate to next set
+        setCurrentCardIndex((prevIndex) => (prevIndex < studyList.items.length - 1 ? prevIndex + 1 : 0));
+        setFlipped(false);
     };
     
     const handleFlashCardClick = () => {
@@ -154,8 +157,11 @@ function SetViewer() {
                                 <img className={styles.closeButtonImg} src={closeButton} alt="Close button" />
                             </button>
                             <div className={`${styles.flashcard} ${flipped ? styles.flip : ''}`} onClick={handleFlashCardClick}>
-                                <div className={`${styles.flashcardtext} ${flipped ? styles.back : styles.front}`}>{flipped ? backText : frontText}</div>
+                                <div className={`${styles.flashcardtext} ${flipped ? styles.back : styles.front}`}>
+                                    {flipped ? studyList.items[currentCardIndex].text2 : studyList.items[currentCardIndex].text1}
+                                </div>
                             </div>
+                            <p className={styles.flashcardcounter}>{currentCardIndex + 1}/{studyList.items.length}</p>
                             <div>
                                 <button onClick={handleFlashCardBackButton} className={styles.backButton}>
                                     <img className={styles.closeButtonImg} src={backButton} alt="Back Flashcard button" />
