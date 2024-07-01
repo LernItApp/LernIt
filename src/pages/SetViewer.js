@@ -139,7 +139,7 @@ function SetViewer() {
                     <div className={styles.studylistcontainer}>
                         <div className={styles.containerhalves}>
                             <h1>{studyList.title}</h1>
-                            <h2>By: {studyList.user}</h2>
+                            <h2 className={styles.by}>By: {studyList.user}</h2>
                         </div>
                         <div className={styles.containerhalves} id='half2'>
                             {studyList.items.map((item, index) => (

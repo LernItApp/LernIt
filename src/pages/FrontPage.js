@@ -155,7 +155,7 @@ function FrontPage() {
                   <a className='box-a' href={`/list/${guide.id}`} key={guide.id}>
                     <div className='exampleBox'>
                       <p className='exampleBoxText'>{guide.title}</p>
-                      <p className='exampleBoxText'>{guide.termCount}</p>
+                      <p className='exampleBoxText'>{guide.termCount} terms</p>
                       <p className='exampleBoxText'>Times Studied: {guide.timesStudied}</p>
                     </div>
                   </a>
@@ -174,7 +174,7 @@ function FrontPage() {
                   <a className='box-a' href={`/list/${guide.id}`} key={guide.id}>
                     <div className='exampleBox'>
                       <p className='exampleBoxText'>{guide.title}</p>
-                      <p className='exampleBoxText'>{guide.termCount}</p>
+                      <p className='exampleBoxText'>{guide.termCount} terms</p>
                     </div> 
                   </a>
                 ))

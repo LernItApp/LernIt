@@ -50,6 +50,9 @@
 .listitem {
     padding: 5px;
     width: 50%;
+    color: black;
+    text-shadow: none;
+    font-weight: 500;
 }
 
 .listitem2 {
@@ -219,4 +222,10 @@
     margin: 0;
     font-weight: bold;
     color: var(--charcoal);
+}
+
+.by {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
 }

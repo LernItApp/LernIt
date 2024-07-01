@@ -76,6 +76,13 @@ body {
     
     z-index: 10;
 
+    transition-duration: 300ms;
+    transition-delay: 0ms;
+}
+
+.searchBar:hover {
+    box-shadow: 1px 1px var(--charcoal);
+    transform: scale(1.01);
 }
 
 .search-item {

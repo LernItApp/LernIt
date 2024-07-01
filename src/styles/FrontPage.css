@@ -110,9 +110,9 @@
 }
 
 .exampleBox p {
-    color: white;
-    text-shadow: 0px 0px 2px black;
-    font-weight: 700;
+    color: black;
+    /* text-shadow: 0px 0px 2px black; */
+    font-weight: 600;
 
 }
 
