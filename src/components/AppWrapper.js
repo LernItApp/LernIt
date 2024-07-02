@@ -6,6 +6,7 @@ import '../styles/ScrollBar.css';
 import { signOut } from "firebase/auth";
 import Cookies from "universal-cookie";
 import { auth } from "../firebase-config.js";
+import logo from './githubicon.webp';
 
 const cookies = new Cookies();
 
@@ -22,6 +23,10 @@ function AppWrapper({ children }) {
     <div className="app-container">{children}</div>
 
     <Footer />
+
+    <a class="github-icon" href="https://github.com/LernItApp/LernIt" target="_blank">
+            <img src={logo} alt="GitHub Repository"/>
+    </a>
 
     </div>
   )

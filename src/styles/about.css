@@ -37,4 +37,8 @@
     position: absolute;
     margin-top: 3%;
     text-align: left;
+
+    border-style: solid;
+    background-color: rgba(100, 120, 133, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }

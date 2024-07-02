@@ -6,13 +6,13 @@
 
 .mysetsbox {
     background-color: rgb(172, 190, 201);
-    border: 2px solid #000000;
+    border: 2px solid var(--charcoal);
     color: rgb(113, 113, 113);
 }
 
 .boxthingies {
     background-color: rgb(172, 190, 201);
-    border: 2px solid #000000;
+    border: 2.5px solid var(--charcoal);
     border-radius: 8px;
     color: rgb(113, 113, 113);
     width: 100%;
@@ -39,7 +39,7 @@
 }
 
 .container {
-    border: 2px solid #000000;
+    border: 3.5px solid var(--charcoal);
     display: flex;
     flex-direction: column;
     align-items: center;

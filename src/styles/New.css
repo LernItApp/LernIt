@@ -25,6 +25,15 @@
     width: 50%;
 
     border-radius: 10px;
+
+    transition-duration: 300ms;
+    transition-delay: 0ms;
+    transition-timing-function: ease;
+    transition-property: transform;
+}
+
+.listItem:hover {
+    transform: scale(1.03);
 }
 
 .listItem1 {
@@ -55,8 +64,19 @@
     padding-bottom: 10px;
 
     margin: 5px;
-
     border-radius: 10px;
+    font-weight: 500;
+
+    transition-duration: 300ms;
+    transition-delay: 0ms;
+    transition-timing-function: ease;
+    transition-property: background-color, transform;
+}
+
+.button:hover {
+    background-color: rgb(203, 217, 225);
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 .deleteButton {
@@ -68,6 +88,17 @@
     margin: 0;
 
     border-radius: 10px;
+
+    transition-duration: 300ms;
+    transition-delay: 0ms;
+    transition-timing-function: ease;
+    transition-property: background-color, transform;
+}
+
+.deleteButton:hover {
+    background-color: rgb(203, 217, 225);
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 .container1 {
@@ -103,6 +134,15 @@
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 0;
+
+    transition-duration: 300ms;
+    transition-delay: 0ms;
+    transition-timing-function: ease;
+    transition-property: background-color, transform;
+}
+
+.new-input:hover {
+    transform: scale(1.025);
 }
 
 .newstudylisttitle {

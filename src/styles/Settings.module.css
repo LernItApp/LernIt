@@ -57,4 +57,5 @@
     box-shadow: 2px 2px var(--charcoal);;
     background-color: rgb(228, 228, 228);
     transform: scale(1.05);
+    cursor: pointer;
 }

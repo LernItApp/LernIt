@@ -59,6 +59,7 @@
 .btn-signup:hover {
     background-color: #19242f;
     color: rgb(203, 203, 203);
+    cursor: pointer;
 }
 
 @media (max-width: 1000px) {
@@ -101,6 +102,7 @@
     width: 260px;
     border-style: solid;
     border-radius: 10px;
+    border-color: var(--charcoal);
     margin: 5px;
     background-color: rgb(172, 190, 201);
     
