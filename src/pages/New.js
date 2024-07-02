@@ -4,11 +4,7 @@ import '../styles/New.css';
 import {
   collection,
   addDoc,
-  where,
   serverTimestamp,
-  onSnapshot,
-  query,
-  orderBy,
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
@@ -37,29 +33,31 @@ function New() {
   };
 
   const handleSave = async () => {
+    if (!title) {
+      alert("Please enter a title for your study list.");
+      return;
+    }
+
+    if (items.length === 0) {
+      alert("Please add at least one flashcard pair.");
+      return;
+    }
+
     console.log("List saved:", items);
 
-    // Create an array to hold the data to be saved
-    const dataToSave = [];
-  
-    // Loop through items and add them to the data array
-    items.forEach(item => {
-      dataToSave.push({
-        text1: item.text1,
-        text2: item.text2//,
-        //user: auth.currentUser.displayName
-      });
-    });
+    const dataToSave = items.map(item => ({
+      text1: item.text1,
+      text2: item.text2,
+    }));
 
     try {
-      // Save the data array to Firestore
       const docRef = await addDoc(collection(db, "studylists"), {
         items: dataToSave,
         user: auth.currentUser.displayName,
-        userId: auth.currentUser.uid, // Save user's ID
-        isPublic: true, // or false depending on your logic
+        userId: auth.currentUser.uid,
+        isPublic: true,
         title: title,
-        termCount: items.length, // Save the number of term pairs
+        termCount: items.length,
         rating: 0.0,
         timesStudied: 0,
         createdAt: serverTimestamp()
@@ -75,49 +73,48 @@ function New() {
     }
   };
 
-  // Log the updated list after calling setItems
   React.useEffect(() => {
     console.log("Updated List:", JSON.stringify(items));
   }, [items]);
 
   return (
     <div className='container1'>
-      <h2>Create a New Study List</h2>
+      <h2 className='newstudylisttitle'>Create a New Study List</h2>
       <button className='button' onClick={handleSave}>Save</button>
       <input
-          type="text"
-          value={title}
-          className='new-input'
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Enter studyset title"
-        />
+        type="text"
+        value={title}
+        className='new-input'
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Enter studyset title"
+      />
       <div className='list'>
         {items.map((item, index) => (
-            <div className='test'>
-              <div className='items'>
-                <div className='listItem listItem1' key={index}>{item.text1}</div>
-                <div className='listItem listItem2' key={index}>{item.text2}</div>
-              </div>
-              <button className='deleteButton' onClick={() => deleteItem(index)}>Delete</button>
+          <div className='test' key={index}>
+            <div className='items'>
+              <div className='listItem listItem1'>{item.text1}</div>
+              <div className='listItem listItem2'>{item.text2}</div>
             </div>
+            <button className='deleteButton' onClick={() => deleteItem(index)}>Delete</button>
+          </div>
         ))}
       </div>
       <div className='inputsDiv'>
         <div>
-        <input
-          type="text"
-          value={input1}
-          className='new-input'
-          onChange={(e) => setInput1(e.target.value)}
-          placeholder="Enter Text 1"
-        />
-        <input
-          type="text"
-          value={input2}
-          className='new-input'
-          onChange={(e) => setInput2(e.target.value)}
-          placeholder="Enter Text 2"
-        />
+          <input
+            type="text"
+            value={input1}
+            className='new-input'
+            onChange={(e) => setInput1(e.target.value)}
+            placeholder="Enter Text 1"
+          />
+          <input
+            type="text"
+            value={input2}
+            className='new-input'
+            onChange={(e) => setInput2(e.target.value)}
+            placeholder="Enter Text 2"
+          />
         </div>
         <button className='button' onClick={addItemToList}>Add to List</button>
       </div>

@@ -53,11 +53,12 @@
     background-color: var(--charcoal);
     color: white;
     transition: all 0.5s;
+    transition-delay: 0ms;
 }
 
 .btn-signup:hover {
-    background-color: rgb(120, 151, 184);
-    color: var(--charcoaldark);
+    background-color: #19242f;
+    color: rgb(203, 203, 203);
 }
 
 @media (max-width: 1000px) {

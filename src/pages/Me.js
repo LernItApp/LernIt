@@ -62,13 +62,14 @@ function Me() {
 
           querySnapshot.forEach((doc) => {
               if (doc.exists()) {
-                  const { title, user, userId, termCount } = doc.data();
+                  const { title, user, userId, termCount, timesStudied } = doc.data();
                   const studyGuide = {
                       id: doc.id,
                       userid: userId,
                       user: user,
                       title: title,
-                      termCount: termCount
+                      termCount: termCount,
+                      timesStudied: timesStudied
                   };
 
                   // for testing purposes.
@@ -176,6 +177,7 @@ function Me() {
                   <div className='exampleBox'>
                     <p className='exampleBoxText'>{guide.title}</p>
                     <p className='exampleBoxText'>{guide.termCount} terms</p>
+                    <p className='exampleBoxText'>Times Studied: {guide.timesStudied}</p>
                   </div> 
                 </a>
               ))

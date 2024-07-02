@@ -118,7 +118,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+
+    opacity: 0;
+    animation-name: openthingsup;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards; /* Ensure the final state of the animation persists */
+    }
+
+@keyframes openthingsup {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
 
 .closeButton {
     height: 50px;
