@@ -22,8 +22,12 @@ function SetViewer() {
     const [studyList, setStudyList] = useState(null);
     const [isMySet, setIsMySet] = useState(false);
     const [flashcardsOpen, setFlashcardsOpen] = useState(false);
+    const [multipleChoiceOpen, setMultipleChoiceOpen] = useState(false);
     const [flipped, setFlipped] = useState(false);
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [showAnswer, setShowAnswer] = useState(false);
+    const [multipleChoiceOptions, setMultipleChoiceOptions] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -93,14 +97,24 @@ function SetViewer() {
         }
     };
 
+    const handleMultipleChoiceClick = () => {
+        setMultipleChoiceOpen(true);
+        setFlashcardsOpen(false);
+        setCurrentCardIndex(0);
+        setShowAnswer(false);
+        generateMultipleChoiceOptions();
+    };
+
     const handleFlashCardsClick = () => {
         setFlashcardsOpen(true);
+        setMultipleChoiceOpen(false);
         setCurrentCardIndex(0);
         setFlipped(false);
     };
 
     const handleCloseButton = () => {
         setFlashcardsOpen(false);
+        setMultipleChoiceOpen(false);
     };
 
     const handleFlashCardBackButton = () => {
@@ -117,6 +131,32 @@ function SetViewer() {
         setFlipped(!flipped);
     };
 
+    const handleOptionSelect = (option) => {
+        setSelectedAnswer(option);
+        setShowAnswer(true);
+    };
+
+    const handleNextQuestion = () => {
+        setCurrentCardIndex((prevIndex) => (prevIndex < studyList.items.length - 1 ? prevIndex + 1 : 0));
+        setShowAnswer(false);
+        setSelectedAnswer(null);
+        generateMultipleChoiceOptions();
+    };
+
+    const generateMultipleChoiceOptions = () => {
+        if (!studyList || !studyList.items) return;
+
+        const correctAnswer = studyList.items[currentCardIndex].text2;
+        const incorrectAnswers = studyList.items
+            .filter((item, index) => index !== currentCardIndex)
+            .map(item => item.text2)
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 3);
+
+        const options = [correctAnswer, ...incorrectAnswers].sort(() => 0.5 - Math.random());
+        setMultipleChoiceOptions(options);
+    };
+
     return (
         <>
             {studyList ? (
@@ -126,7 +166,7 @@ function SetViewer() {
 
                             <div className={styles.otherbuttons}>
                                 <button onClick={handleFlashCardsClick} className={`${styles.otherbutton} ${styles.buttonstyle}`}>Flashcards</button>
-                                <button className={`${styles.otherbutton} ${styles.buttonstyle}`}>Multiple Choice</button>
+                                <button onClick={handleMultipleChoiceClick} className={`${styles.otherbutton} ${styles.buttonstyle}`}>Multiple Choice</button>
                             </div>
 
                             {isMySet ? (
@@ -170,6 +210,42 @@ function SetViewer() {
                                     <img className={styles.closeButtonImg} src={forwardButton} alt="Forward Flashcard button" />
                                 </button>
                             </div>
+                        </div>
+                    )}
+
+                    {multipleChoiceOpen && (
+                        <div className={styles.multipleChoiceContainer}>
+                            <button onClick={handleCloseButton} className={styles.closeButton}>
+                                <img className={styles.closeButtonImg} src={closeButton} alt="Close button" />
+                            </button>
+                            <div className={styles.question}>
+                                {studyList.items[currentCardIndex].text1}
+                            </div>
+                            <div className={styles.options}>
+                                {multipleChoiceOptions.map((option, index) => (
+                                    <button
+                                        key={index}
+                                        className={styles.optionButton}
+                                        onClick={() => handleOptionSelect(option)}
+                                        disabled={showAnswer}
+                                    >
+                                        {option}
+                                    </button>
+                                ))}
+                            </div>
+                            {showAnswer && (
+                                <div className={styles.answer}>
+                                    {selectedAnswer === studyList.items[currentCardIndex].text2
+                                        ? "Correct!"
+                                        : `Incorrect. The correct answer is: ${studyList.items[currentCardIndex].text2}`}
+                                </div>
+                            )}
+                            {showAnswer && (
+                                <button onClick={handleNextQuestion} className={styles.nextButton}>
+                                    Next Question
+                                </button>
+                            )}
+                            <p className={styles.questionCounter}>{currentCardIndex + 1}/{studyList.items.length}</p>
                         </div>
                     )}
                 </div>

@@ -100,6 +100,32 @@
     width: 50%;
 }
 
+.multipleChoiceContainer {
+    border-style: solid;
+    border-color: var(--charcoal);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 1;
+    width: 50%;
+    height: 75%;
+
+    background-color: rgb(172, 190, 201, 0.5);
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    opacity: 0;
+    animation-name: openthingsup;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards; /* Ensure the final state of the animation persists */
+}
+
 .flashcardscontainer {
     border-style: solid;
     border-color: var(--charcoal);
@@ -235,8 +261,116 @@
     color: var(--charcoal);
 }
 
+.questionCounter {
+    position: absolute;
+    top: 20px;
+    font-size: 18px;
+    padding: 10px;
+    margin: 0;
+    font-weight: bold;
+    color: var(--charcoal);
+}
+
 .by {
     font-size: 20px;
     font-weight: 500;
     margin: 0;
+}
+
+.question {
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 70px;
+    margin-bottom: 30px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: rgba(15, 28, 39, 0.3);
+    border-radius: 10px;
+    text-shadow: 0px 0px 0.5px black;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.optionButton {
+    border-radius: 10px;
+    border-style: solid;
+    border-color: var(--charcoal);
+    background-color: rgb(172, 190, 201);
+    padding: 15px;
+    margin: 5px;
+    font-weight: 500;
+    height: 60px;
+    font-size: 15px;
+
+    transition-duration: 300ms;
+    transition-delay: 0ms;
+    transition-timing-function: ease-in-out;
+    transition-property: background-color, box-shadow, transform;
+}
+
+.optionButton:hover {
+    background-color: rgb(202, 208, 211);
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.optionButton:disabled {
+    background-color: rgb(202, 208, 211);
+    transform: scale(1.05);
+    color: rgb(142, 142, 142);
+    cursor: not-allowed;
+}
+
+.nextButton {
+    border-radius: 10px;
+    border-style: solid;
+    border-color: var(--charcoal);
+    background-color: rgb(172, 190, 201);
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 5px;
+    font-weight: 500;
+    height: 60px;
+    font-size: 15px;
+
+    transition-duration: 300ms;
+    transition-delay: 0ms;
+    transition-timing-function: ease-in-out;
+    transition-property: background-color, box-shadow, transform;
+}
+
+.nextButton:hover {
+    background-color: rgb(202, 208, 211);
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.answer {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(15, 28, 39, 0.4);
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    text-shadow: 0px 0px 0.5px black;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+
+    animation-name: fadein;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+
+
+}
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
