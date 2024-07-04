@@ -7,6 +7,7 @@ import {
     updateDoc,
     collection,
     addDoc,
+    setDoc,
     query,
     orderBy,
     getDocs,
@@ -16,9 +17,13 @@ import styles from '../styles/SetViewer.module.css';
 import closeButton from './x-button.png';
 import backButton from './back-button.png';
 import forwardButton from './forward-button.png';
+import { useNavigate } from "react-router-dom";
 
 function SetViewer() {
+
+    let navigate = useNavigate();
     const { id } = useParams();
+
     const [studyList, setStudyList] = useState(null);
     const [isMySet, setIsMySet] = useState(false);
     const [flashcardsOpen, setFlashcardsOpen] = useState(false);
@@ -79,23 +84,40 @@ function SetViewer() {
     }, [id]);
 
     const addRecentStudy = async (uid, recentStudy) => {
-        const recentStudyRef = collection(db, 'users', uid, 'recentstudy');
-
         try {
-            await addDoc(recentStudyRef, recentStudy);
-
-            const recentStudyQuery = query(recentStudyRef, orderBy('timestamp', 'desc'));
-            const querySnapshot = await getDocs(recentStudyQuery);
-            const documents = querySnapshot.docs;
-
-            if (documents.length > 20) {
-                const oldestDoc = documents[documents.length - 1];
-                await deleteDoc(oldestDoc.ref);
+            const userDocRef = doc(db, 'users', uid);
+            const userDocSnap = await getDoc(userDocRef);
+    
+            if (userDocSnap.exists()) {
+                const userData = userDocSnap.data();
+                let recentlyStudied = userData.recentlyStudied || [];
+    
+                // Remove any existing study set with the same ID
+                recentlyStudied = recentlyStudied.filter(item => item.studySetId !== recentStudy.studySetId);
+    
+                // Add the new study to the beginning of the array
+                recentlyStudied.unshift(recentStudy);
+    
+                // Ensure the array has a maximum of 10 items
+                if (recentlyStudied.length > 10) {
+                    recentlyStudied = recentlyStudied.slice(0, 10);
+                }
+    
+                // Update the user document with the new recently studied array
+                await updateDoc(userDocRef, {
+                    recentlyStudied: recentlyStudied
+                });
+            } else {
+                // If the user document doesn't exist, create it with the recently studied array
+                await setDoc(userDocRef, {
+                    recentlyStudied: [recentStudy]
+                });
             }
         } catch (error) {
-            console.error("Error adding recent study document:", error);
+            console.error("Error updating recent study:", error);
         }
     };
+    
 
     const handleMultipleChoiceClick = () => {
         setMultipleChoiceOpen(true);
@@ -157,6 +179,11 @@ function SetViewer() {
         setMultipleChoiceOptions(options);
     };
 
+    const handleEditClick = () => {
+        navigate(`/edit/${id}`);
+    };
+    
+
     return (
         <>
             {studyList ? (
@@ -171,7 +198,7 @@ function SetViewer() {
 
                             {isMySet ? (
                             <div className={styles.editdeletebuttons}>
-                                <button className={`${styles.editdeletebutton} ${styles.buttonstyle}`}>Edit</button>
+                                <button onClick={handleEditClick} className={`${styles.editdeletebutton} ${styles.buttonstyle}`}>Edit</button>
                             </div>
                         ) : null}
                         </div>

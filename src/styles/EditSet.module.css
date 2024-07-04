@@ -1,0 +1,126 @@
+.container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 60%;
+}
+
+.titleInput, .termInput, .definitionInput {
+    padding: 8px;
+    width: 200px;
+    flex: 1;
+    border-radius: 5px;
+
+    font-size: 15px;
+
+    transition-duration: 300ms;
+    transition-delay: 0ms;
+    transition-timing-function: ease-in-out;
+    transition-property: background-color, box-shadow, transform;
+}
+
+.termInput:hover, .definitionInput:hover {
+    transform: scale(1.025);
+}
+
+.titleInput:hover {
+    transform: scale(1.01);
+}
+
+.item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.removeButton, .addButton, .saveButton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+/* rgb(172, 190, 201); */
+.saveButton, .addButton, .removeButton { 
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #1f2b3a;
+    background-color: var(--charcoal);
+    font-weight: 520;
+    font-size: 15px;
+    color: white;
+
+    transition-duration: 300ms;
+    transition-delay: 0ms;
+    transition-timing-function: ease-in-out;
+    transition-property: background-color, box-shadow, transform;
+}
+
+.removeButton:hover, .saveButton:hover, .addButton:hover {
+    background-color: rgb(172, 190, 201);
+    color: var(--charcoal);
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+.saveButton {
+    margin-top: 5px;
+}
+
+.error {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(15, 28, 39, 0.4);
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    text-shadow: 0px 0px 0.5px black;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+
+    animation-name: fadein;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    margin-right: 10px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.titlediv {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}

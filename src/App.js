@@ -18,6 +18,7 @@ import SignIn from "./pages/SignIn.js";
 import { Auth } from "./components/Auth.js";
 import Settings from "./pages/Settings.js";
 import SetViewer from "./pages/SetViewer.js";
+import EditSet from "./pages/EditSet.js";
 
 const cookies = new Cookies();
 
@@ -43,6 +44,7 @@ function App() {
             <>
               <Route path="/" element={<FrontPage />} />
               <Route path="/new" element={<New />} />
+              <Route path="/edit/:id" element={<EditSet />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/me" element={<Me />} />
