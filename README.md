@@ -1,5 +1,6 @@
 # LernIt
 LernIt is a simple but effective learning solution for students! It emphaises efficiency and performance when it comes to learning new things, regardless of what you are learning!
+Visit the site at: https://lernit.site/
 
 ## Docker
 
