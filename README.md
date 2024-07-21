@@ -41,4 +41,4 @@ To build and run the Docker container for this project, follow these steps:
 Contributions to this project are welcome and encouraged! Please make an issue on GitHub so we can discuss your contribution before you make a pull request.
 
 # License
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE.txt).
